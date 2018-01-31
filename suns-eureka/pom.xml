@@ -11,5 +11,11 @@
 
     <artifactId>suns-eureka</artifactId>
 
-
+    <dependencies>
+        <!-- spring cloud -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka-server</artifactId>
+        </dependency>
+    </dependencies>
 </project>

@@ -11,5 +11,29 @@
 
     <artifactId>suns-gateway</artifactId>
 
+    <dependencies>
+        <!-- 公共项目 -->
+        <dependency>
+            <groupId>com.ryan</groupId>
+            <artifactId>suns-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ryan</groupId>
+            <artifactId>suns-common</artifactId>
+        </dependency>
 
+        <!-- spring cloud -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zuul</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+    </dependencies>
 </project>

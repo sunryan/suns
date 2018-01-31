@@ -1,0 +1,30 @@
+spring:
+    application:
+        name: suns-gateway
+
+server:
+    port: 8103
+
+zuul:
+    ignored-services: "*"
+    prefix: / #为zuul设置一个公共的前缀
+    routes:
+        sys:
+            path: /sys/**
+            serviceId: suns-web-system
+        auth:
+            path: /auth/**
+            serviceId: suns-auth
+        api:
+            path: /api/**
+            serviceId: suns-api
+        server-user:
+            path: /user/**
+            serviceId: suns-server-user
+        server-core:
+            path: /core/**
+            serviceId: suns-server-core
+
+    add-proxy-headers: true
+
+
