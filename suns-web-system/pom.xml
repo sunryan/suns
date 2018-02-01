@@ -12,15 +12,28 @@
     <artifactId>suns-web-system</artifactId>
 
     <dependencies>
+        <!-- 公共项目 -->
         <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-core</artifactId>
-            <version>${shiro.version}</version>
+            <groupId>com.ryan</groupId>
+            <artifactId>suns-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ryan</groupId>
+            <artifactId>suns-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-            <version>${shiro.version}</version>
+            <artifactId>shiro-cas</artifactId>
+            <version>1.2.4</version>
         </dependency>
     </dependencies>
 </project>

@@ -1,20 +1,18 @@
-package com.ryan.suns.user;
+package com.ryan.suns.system;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
- * Created by ryan on 2018/1/31.
+ * @author lr
+ * @date 2018/2/1
  */
-
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan(basePackages = "com.ryan.suns.user.mapper")
-public class UserAppliction {
-
+public class SystemAppliction {
+    
     public static void main(String[] args) {
-        SpringApplication.run(UserAppliction.class, args);
+        SpringApplication.run(SystemAppliction.class, args);
     }
 }

@@ -17,7 +17,7 @@ public interface ResourcesService  {
      * 加载shiro 资源权限过滤器
      * @return
      */
-    Map<String, String> loadShiroFilter();
+    List<Resources> loadShiroFilter();
 
     /**
      * @param userId

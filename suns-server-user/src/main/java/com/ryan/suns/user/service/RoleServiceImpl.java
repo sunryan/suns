@@ -1,4 +1,4 @@
-package com.ryan.suns.user.impl;
+package com.ryan.suns.user.service;
 
 import com.ryan.suns.api.auth.RoleService;
 import com.ryan.suns.user.mapper.RoleMapper;

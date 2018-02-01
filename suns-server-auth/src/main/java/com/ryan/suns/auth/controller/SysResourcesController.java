@@ -1,15 +1,16 @@
 package com.ryan.suns.auth.controller;
 
-import com.ryan.suns.api.auth.ResourcesService;
+import com.ryan.suns.auth.logic.ShiroLogic;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.mgt.DefaultFilterChainManager;
 import org.apache.shiro.web.filter.mgt.PathMatchingFilterChainResolver;
 import org.apache.shiro.web.servlet.AbstractShiroFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.annotation.Resource;
 import java.util.Map;
+
 
 /**
  * 后台资源管理
@@ -22,8 +23,8 @@ public class SysResourcesController {
     
 //    @Resource
     private ShiroFilterFactoryBean shiroFilterFactoryBean;
-    @Resource
-    private ResourcesService resourcesService;
+    @Autowired
+    private ShiroLogic shiroLogic;
     
     /**
      * 更新资源后 重新加载权限注入shiro
@@ -46,7 +47,7 @@ public class SysResourcesController {
         
         shiroFilterFactoryBean.getFilterChainDefinitionMap().clear();
         //重新加载
-        shiroFilterFactoryBean.setFilterChainDefinitionMap(resourcesService.loadShiroFilter());
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(shiroLogic.loadShiroFilterChain());
         // 重新构建生成
         Map<String, String> chains = shiroFilterFactoryBean.getFilterChainDefinitionMap();
         for (Map.Entry<String, String> entry : chains.entrySet()) {
@@ -58,4 +59,5 @@ public class SysResourcesController {
         System.out.println("更新权限成功！！");
     
     }
+    
 }

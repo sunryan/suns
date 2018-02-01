@@ -1,4 +1,4 @@
-package com.ryan.suns.user.impl;
+package com.ryan.suns.user.service;
 
 import com.ryan.suns.api.auth.UserService;
 import com.ryan.suns.common.model.auth.User;

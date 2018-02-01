@@ -1,7 +1,7 @@
 spring:
     application:
         name: suns-server-auth
-        
+
     redis:
         host: 127.0.0.1
         port: 6379
@@ -14,7 +14,8 @@ spring:
         mode: LEGACYHTML5
 server:
     port: 8201
-
+    ssl:
+        enabled: false
 
 
 ryan:

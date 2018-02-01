@@ -1,11 +1,11 @@
-package com.ryan.suns.user.impl;
+package com.ryan.suns.auth.logic;
 
 import cn.hutool.core.util.StrUtil;
-import com.ryan.suns.api.auth.ResourcesService;
+import com.ryan.suns.api.feign.user.ResourcesClient;
+import com.ryan.suns.auth.constant.CasConstant;
 import com.ryan.suns.common.model.auth.Resources;
-import com.ryan.suns.user.mapper.ResourcesMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,14 +13,14 @@ import java.util.Map;
 
 /**
  * @author lr
- * @date 2018/1/23
+ * @date 2018/2/1
  */
-@Service
-public class ResourcesServiceImpl implements ResourcesService {
+@Component
+public class ShiroLogic {
+    
     
     @Autowired
-    private ResourcesMapper resourcesMapper;
-    
+    private ResourcesClient resourcesClient;
     
     /**
      * 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边
@@ -29,17 +29,19 @@ public class ResourcesServiceImpl implements ResourcesService {
      *  authc:所有url都必须认证通过才可以访问;
      *  anon:所有url都都可以匿名访问
      */
-    @Override
-    public Map<String, String> loadShiroFilter() {
+    public Map<String, String> loadShiroFilterChain(){
         Map<String, String> filterChainDefinitionMap = new HashMap<>();
+        // shiro集成cas后，首先添加该规则
+        filterChainDefinitionMap.put(CasConstant.CAS_FILTER_URL_PATTERN, "casFilter");
         // 静态资源部受权限限制
         filterChainDefinitionMap.put("/css/**","anon");
         filterChainDefinitionMap.put("/js/**","anon");
         filterChainDefinitionMap.put("/img/**","anon");
         filterChainDefinitionMap.put("/static/**","anon");
-    
+        
         //加载资源环境过滤
-        List<Resources> resourcesList = queryAll();
+        
+        List<Resources> resourcesList = resourcesClient.loadShiroFilter();
         for(Resources resources : resourcesList){
             if (StrUtil.isNotEmpty(resources.getResurl())) {
                 String permission = "perms[" + resources.getResurl()+ "]";
@@ -48,15 +50,5 @@ public class ResourcesServiceImpl implements ResourcesService {
         }
         filterChainDefinitionMap.put("/**", "authc");
         return filterChainDefinitionMap;
-    }
-    
-    @Override
-    public List<Resources> loadUserResources(Integer userId) {
-        return resourcesMapper.loadUserResources(userId);
-    }
-    
-    @Override
-    public List<Resources> queryAll() {
-        return resourcesMapper.queryAll();
     }
 }

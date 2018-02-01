@@ -14,7 +14,7 @@ import java.util.Map;
  * Created by ryan on 2018/1/31.
  */
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/resources")
 public class ResourcesControl implements ResourcesClient{
 
 
@@ -22,7 +22,7 @@ public class ResourcesControl implements ResourcesClient{
     private ResourcesService resourcesService;
 
     @Override
-    public Map<String, String> loadShiroFilter() {
+    public List<Resources> loadShiroFilter() {
         return resourcesService.loadShiroFilter();
     }
 

@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Created by ryan on 2018/1/31.
  */
-@FeignClient(value = "suns-server-user", path = "/api/user", configuration = FeignConfiguration.class)
+@FeignClient(value = "suns-server-user", path = "/api/resources", configuration = FeignConfiguration.class)
 public interface ResourcesClient {
 
     /**
@@ -20,7 +20,7 @@ public interface ResourcesClient {
      * @return
      */
     @GetMapping("/loadShiroFilter")
-    Map<String, String> loadShiroFilter();
+    List<Resources> loadShiroFilter();
 
     @GetMapping("/loadUserResources")
     List<Resources> loadUserResources(@RequestParam("userId") Integer userId);
