@@ -1,0 +1,18 @@
+spring:
+    application:
+        name: suns-sso-auth
+    profiles:
+          active: ${SPRING_PROFILES_ACTIVE:dev}
+    redis:
+        host: 127.0.0.1
+        port: 6379
+
+server:
+    port: 8201
+
+security:
+    oauth2:
+        resource:
+            filter-order: 3
+
+

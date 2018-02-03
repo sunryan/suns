@@ -22,6 +22,7 @@
 		<module>suns-config</module>
 		<module>suns-mq</module>
 		<module>suns-api</module>
+		<module>suns-sso</module>
 	</modules>
 
 	<parent>
@@ -70,6 +71,10 @@
 
 
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>cn.hutool</groupId>
 			<artifactId>hutool-all</artifactId>

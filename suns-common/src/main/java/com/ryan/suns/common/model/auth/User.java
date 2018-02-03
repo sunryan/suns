@@ -26,5 +26,9 @@ public class User implements Serializable{
     private Integer enable;
     
     private List<Role> roleList;
+    private Object authorities;
 
+    public Object getAuthorities() {
+        return authorities;
+    }
 }

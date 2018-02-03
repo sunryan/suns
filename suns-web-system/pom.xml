@@ -31,9 +31,8 @@
             <artifactId>spring-cloud-starter-feign</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-cas</artifactId>
-            <version>1.2.4</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
     </dependencies>
 </project>
