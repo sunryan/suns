@@ -1,12 +1,12 @@
 package com.ryan.suns.auth.controller;
 
-import com.ryan.suns.auth.constant.CasConstant;
 import com.ryan.suns.common.model.auth.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -24,11 +24,14 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class LoginController {
     
+    @Value("${ryan.auth.login}")
+    private String login;
+    
     @RequestMapping(value="/login",method= RequestMethod.GET)
     public String login(){
-        return "login";
+        return login;
     }
-
+    
     @RequestMapping(value="/login",method= RequestMethod.POST)
     public String login(HttpServletRequest request, User user, Model model){
         if (StringUtils.isEmpty(user.getUsername()) || StringUtils.isEmpty(user.getPassword())) {
@@ -56,8 +59,8 @@ public class LoginController {
         //使用权限管理工具进行用户的退出，跳出登录，给出提示信息
         SecurityUtils.getSubject().logout();
         redirectAttributes.addFlashAttribute("msg", "您已安全退出");
-        return "redirect:"  + CasConstant.LOGOUT_URL;
+        return "redirect:/login";
     }
     
-
+    
 }

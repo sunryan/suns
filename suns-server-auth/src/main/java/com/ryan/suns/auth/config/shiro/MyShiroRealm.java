@@ -3,15 +3,14 @@ package com.ryan.suns.auth.config.shiro;
 import com.ryan.suns.api.feign.user.ResourcesClient;
 import com.ryan.suns.api.feign.user.UserClient;
 import com.ryan.suns.auth.config.redis.RedisSessionDao;
-import com.ryan.suns.auth.constant.CasConstant;
 import com.ryan.suns.common.model.auth.Resources;
 import com.ryan.suns.common.model.auth.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.cas.CasRealm;
 import org.apache.shiro.mgt.RealmSecurityManager;
+import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
@@ -19,7 +18,6 @@ import org.apache.shiro.subject.support.DefaultSubjectContext;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -28,7 +26,7 @@ import java.util.List;
  * @author lr
  * @date 2018/1/23
  */
-public class MyShiroRealm extends CasRealm {
+public class MyShiroRealm extends AuthorizingRealm {
 
     @Autowired
     private UserClient userClient;
@@ -39,12 +37,6 @@ public class MyShiroRealm extends CasRealm {
     @Autowired
     private RedisSessionDao redisSessionDao;
     
-    @PostConstruct
-    public void initProperty(){
-        setCasServerUrlPrefix(CasConstant.CAS_SERVER_URL_PREFIX);
-        // 客户端回调地址
-        setCasService(CasConstant.SHIRO_SERVER_URL_PREFIX + CasConstant.CAS_FILTER_URL_PATTERN);
-    }
 
     //授权
     @Override
