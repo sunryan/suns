@@ -7,13 +7,8 @@ package com.ryan.suns.auth.config.shiro;
 
 import com.ryan.suns.auth.config.redis.RedisCacheManager;
 import com.ryan.suns.auth.config.redis.RedisSessionDao;
-import com.ryan.suns.auth.constant.CasConstant;
 import com.ryan.suns.auth.logic.ShiroLogic;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
-import org.apache.shiro.cas.CasFilter;
-
-import javax.servlet.Filter;
-import org.apache.shiro.cas.CasSubjectFactory;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -26,8 +21,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *
@@ -36,7 +29,11 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
-
+    
+    
+    @Value("${ryan.suns.auth.loginUrl}")
+    private String loginUrl;
+    
     @Value("${ryan.suns.auth.successUrl}")
     private String successUrl;
 
@@ -98,29 +95,10 @@ public class ShiroConfig {
         securityManager.setSessionManager(sessionManager());
         // 注入缓存管理器
         securityManager.setCacheManager(redisCacheManager());
-        // 指定 SubjectFactory
-        securityManager.setSubjectFactory(new CasSubjectFactory());
         System.out.println("===========================securityManager end");
         return securityManager;
     }
     
-    /**
-     * CAS过滤器
-     *
-     * @return
-     * @author SHANHY
-     * @create  2016年1月17日
-     */
-    @Bean(name = "casFilter")
-    public CasFilter getCasFilter() {
-        CasFilter casFilter = new CasFilter();
-        casFilter.setName("casFilter");
-        casFilter.setEnabled(true);
-        // 登录失败后跳转的URL，也就是 Shiro 执行 CasRealm 的 doGetAuthenticationInfo 方法向CasServer验证tiket
-        // 我们选择认证失败后再打开登录页面
-        casFilter.setFailureUrl(CasConstant.LOGIN_URL);
-        return casFilter;
-    }
     
     @Bean
     public AuthorizationAttributeSourceAdvisor getAuthorizationAttributeSourceAdvisor() {
@@ -164,20 +142,14 @@ public class ShiroConfig {
         // 注入安全管理器
         shiroFilterFactoryBean.setSecurityManager(securityManager());
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
-        shiroFilterFactoryBean.setLoginUrl(CasConstant.LOGIN_URL);
+        shiroFilterFactoryBean.setLoginUrl("/login");
         // 登录成功后要跳转的链接
-        shiroFilterFactoryBean.setSuccessUrl(CasConstant.LOGIN_SUCCESS_URL);
+        shiroFilterFactoryBean.setSuccessUrl("/index");
         //未授权界面跳转403
-        shiroFilterFactoryBean.setUnauthorizedUrl(CasConstant.ERROR_403);
-      
-        // 添加casFilter到shiroFilter中
-        Map<String, Filter> filters = new HashMap<>();
-        filters.put("casFilter", getCasFilter());
-        shiroFilterFactoryBean.setFilters(filters);
-        
+        shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         //定义拦截器
+        
         shiroFilterFactoryBean.setFilterChainDefinitionMap(shiroLogic().loadShiroFilterChain());
-    
         System.out.println("===========================shiro-filter end");
         return shiroFilterFactoryBean;
     }

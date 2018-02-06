@@ -23,9 +23,3 @@ zuul:
             serviceId: suns-server-core
 
     add-proxy-headers: true
-
-cas:
-    server-url-prefix: http://localhost:${server.port}/auth/
-    server-login-url: http://localhost:${server.port}/auth/login
-    client-host-url:  http://localhost:${server.port}/
-    validation-type: CAS

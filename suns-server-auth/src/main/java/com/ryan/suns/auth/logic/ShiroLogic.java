@@ -2,7 +2,6 @@ package com.ryan.suns.auth.logic;
 
 import cn.hutool.core.util.StrUtil;
 import com.ryan.suns.api.feign.user.ResourcesClient;
-import com.ryan.suns.auth.constant.CasConstant;
 import com.ryan.suns.common.model.auth.Resources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,8 +30,6 @@ public class ShiroLogic {
      */
     public Map<String, String> loadShiroFilterChain(){
         Map<String, String> filterChainDefinitionMap = new HashMap<>();
-        // shiro集成cas后，首先添加该规则
-        filterChainDefinitionMap.put(CasConstant.CAS_FILTER_URL_PATTERN, "casFilter");
         // 静态资源部受权限限制
         filterChainDefinitionMap.put("/css/**","anon");
         filterChainDefinitionMap.put("/js/**","anon");
