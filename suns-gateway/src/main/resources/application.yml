@@ -2,6 +2,12 @@ spring:
     application:
         name: suns-gateway
 
+    thymeleaf:
+        prefi: classpath:/templates/
+        suffix: .html
+        encoding: UTF-8
+        cache: false
+
 
 server:
     port: 8103
@@ -11,9 +17,6 @@ zuul:
     sensitiveHeaders: "*"   #过滤客户端附带的headers
 #    prefix: /api #为zuul设置一个公共的前缀
     routes:
-        sys:
-            path: /sys/**
-            serviceId: suns-web-system
         auth:
             path: /auth/**
             serviceId: suns-sso-auth

@@ -13,13 +13,11 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -47,7 +45,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      * 声明TokenStore实现 (redis存储)
      * @return
      */
-    @Bean
+//    @Bean
     public TokenStore redisTokenStore() {
         return new RedisTokenStore(connectionFactory);
     }
@@ -79,9 +77,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         //实现token生成 并持久化到数据库中
         endpoints
                 .authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService)
-                .tokenStore(redisTokenStore());
-//                .tokenStore(jwtTokenStore());
+                .userDetailsService(userDetailsService);
+        //jwt
+        endpoints.accessTokenConverter(accessTokenConverter());
+        endpoints.tokenStore(jwtTokenStore());
 //        endpoints.accessTokenConverter(accessTokenConverter());
 
         // 配置TokenServices参数(控制token 的失效时间等信息)
@@ -92,5 +91,23 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         tokenServices.setTokenEnhancer(endpoints.getTokenEnhancer());
         tokenServices.setAccessTokenValiditySeconds( (int) TimeUnit.DAYS.toSeconds(30));
         endpoints.tokenServices(tokenServices);*/
+    }
+
+    @Bean(name = "jwtAccessTokenConverter")
+    public JwtAccessTokenConverter accessTokenConverter() {
+        JwtAccessTokenConverter accessTokenConverter = new SunsJwtAccessTokenConverter();
+        accessTokenConverter.setSigningKey("123");// 测试用,资源服务使用相同的字符达到一个对称加密的效果,生产时候使用RSA非对称加密方式
+        return accessTokenConverter;
+    }
+
+    /**
+     * token store
+     *
+     * @return
+     */
+    @Bean(name = "jwtTokenStore")
+    public TokenStore jwtTokenStore() {
+        TokenStore tokenStore = new JwtTokenStore(accessTokenConverter());
+        return tokenStore;
     }
 }

@@ -21,24 +21,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
                 //允许所有用户访问
-                .antMatchers("/sys/home", "/auth/oauth/token").permitAll()
+                .antMatchers("/home", "/auth/oauth/token", "/auth/oauth/authorize").permitAll()
                 //其他地址的访问均需验证权限
                 .anyRequest().authenticated()
                 .and()
                     //指定登录页
-                    .formLogin().loginPage("/sys/login")
+                    .formLogin().loginPage("/login")
                     //登录成功后默认跳转到
                     .defaultSuccessUrl("/index")
-                    .failureUrl("/sys/login?error").permitAll()
+                    .failureUrl("/login?error").permitAll()
                 .and()
                     //退出成功后默认跳转到
-                    .logout().logoutSuccessUrl("/sys/login").permitAll();
+                    .logout().logoutSuccessUrl("/login").permitAll();
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
         //解决静态资源被拦截的问题
-        web.ignoring().antMatchers("/sys/static/**","/sys/js/**","/js/**");
+        web.ignoring().antMatchers("/static/**","/js/**");
 //        web.ignoring().antMatchers("/auth/oauth/token");
     }
 }
