@@ -30,21 +30,8 @@ zuul:
     add-proxy-headers: true
 
 
-
-
-security:
-    basic:
-        enabled: false
-    user:
-        password: 123456
-    oauth2:
-        sso:
-            login-path: /login
-        client:
-            access-token-uri: http://localhost:${server.port}/auth/oauth/token
-            user-authorization-uri: http://localhost:${server.port}/auth/oauth/authorize
-            client-id: webapp
-        resource:
-            user-info-uri: http://localhost:${server.port}/auth/user
-            prefer-token-info: false
-
+jwt:
+  pri-key:
+    path: jwt/pri.key
+  pub-key:
+    path: jwt/pub.key

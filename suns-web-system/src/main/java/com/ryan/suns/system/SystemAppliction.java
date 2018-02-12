@@ -9,7 +9,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @date 2018/2/1
  */
 @SpringBootApplication
-@EnableDiscoveryClient
 public class SystemAppliction {
     
     public static void main(String[] args) {

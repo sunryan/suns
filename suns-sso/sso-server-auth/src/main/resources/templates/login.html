@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div id="loginbox"><!--/*@thymesVar id="msg" type="java.lang.String"*/-->
+<span th:text="${msg}"></span>
+    <form id="loginform" class="form-vertical" th:action="@{/auth/oauth/token}" action="" method="post">
+        <input type="hidden" name="grant_type" value="password" />
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_lg"><i class="icon-user"></i></span><input type="text" name="username" placeholder="Username" />
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_ly"><i class="icon-lock"></i></span><input type="password" name="password" placeholder="Password" />
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <span class="pull-right"><a type="submit" href="javascript:$('#loginform').submit();" class="btn btn-success">Login</a></span>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" th:src="@{/js/jquery-1.11.2.min.js}"></script>
+</body>
+</html>

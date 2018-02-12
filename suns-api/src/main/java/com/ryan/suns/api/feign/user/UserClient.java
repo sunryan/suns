@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface UserClient {
     
     
-    @GetMapping("/loadShiroFilter")
+    @GetMapping("/selectByUsername")
     User selectByUsername(@RequestParam("username") String username);
 
 }

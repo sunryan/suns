@@ -3,7 +3,6 @@ package com.ryan.sso.auth.config;
 import com.ryan.sso.auth.service.DomainUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -44,12 +43,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
+        http.csrf().disable();
         http
+                .requestMatchers().antMatchers("/oauth/**","/index","/login/**","/logout/**")
+                .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.OPTIONS).permitAll()
-                .anyRequest().authenticated()
-                .and().httpBasic()
-                .and().csrf().disable();
+                .antMatchers("/oauth/**").authenticated()
+                .and()
+                .formLogin().permitAll();
         // @formatter:on
     }
 

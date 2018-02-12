@@ -1,14 +1,10 @@
 package com.ryan.suns.common.model.auth;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 import java.io.Serializable;
 
-@Getter
-@Setter
-@ToString
+@Data
 public class Role implements Serializable{
     
     private static final long serialVersionUID = -6140090613812307452L;

@@ -7,7 +7,35 @@ spring:
         suffix: .html
         encoding: UTF-8
         cache: false
+        mode: LEGACYHTML5
 
 server:
     port: 8080
 
+
+github:
+    client:
+        clientId: 252f7eb688ceca204c50
+        clientSecret: ef0616fa5f3f54263cb11d6c369efb240ef5da2f
+        accessTokenUri: https://github.com/login/oauth/access_token
+        userAuthorizationUri: https://github.com/login/oauth/authorize
+        clientAuthenticationScheme: form
+        tokenName: oauth_token
+        authenticationScheme: query
+    resource:
+        userInfoUri: https://api.github.com/user
+
+
+
+security:
+    oauth2:
+        sso:
+            loginPath: /login   # 登录路径
+        client:
+            clientId: 252f7eb688ceca204c50
+            clientSecret: ef0616fa5f3f54263cb11d6c369efb240ef5da2f
+            accessTokenUri: https://github.com/login/oauth/access_token
+            userAuthorizationUri: https://github.com/login/oauth/authorize
+        resource:
+            userInfoUri: https://api.github.com/user
+            preferTokenInfo: false

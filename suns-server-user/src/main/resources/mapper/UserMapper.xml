@@ -13,7 +13,7 @@
 
 
   <select id="selectByUsername" resultType="com.ryan.suns.common.model.auth.User">
-    select * from user where userName = #{username}
+      select * from user where userName = #{username}
   </select>
 
 </mapper>
