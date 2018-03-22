@@ -4,6 +4,7 @@ import com.ryan.suns.api.auth.UserService;
 import com.ryan.suns.api.feign.user.UserClient;
 import com.ryan.suns.common.model.auth.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,5 +22,10 @@ public class UserControl  implements UserClient {
     @Override
     public User selectByUsername(String username) {
         return userService.selectByUsername(username);
+    }
+
+    @GetMapping("/ceshi")
+    public String ceshi(){
+        return "ceshi";
     }
 }

@@ -24,6 +24,7 @@
 		<module>suns-api</module>
 		<module>suns-sso</module>
         <module>suns-web-demo1</module>
+        <module>suns-security</module>
     </modules>
 
 	<parent>

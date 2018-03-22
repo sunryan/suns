@@ -26,7 +26,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
  * Spring Security 配置类.
  * 
  * @since 1.0.0 2017年3月23日
- * @author <a href="https://waylau.com">Way Lau</a>
+ *  @author lr
  */
 @EnableWebSecurity
 @EnableOAuth2Client  // 启用 OAuth 2.0 客户端

@@ -4,7 +4,7 @@ package com.ryan.suns.system.domain;
  * User 实体
  * 
  * @since 1.0.0 2017年3月5日
- * @author <a href="https://waylau.com">Way Lau</a>
+ *  @author lr
  */
 public class User {
  
