@@ -1,6 +1,7 @@
 package com.ryan.suns.common.exception;
 
 /**
+ * 授权异常
  * @author lr
  * @date 2018/3/22.
  */

@@ -14,18 +14,13 @@
 	<modules>
 		<module>suns-common</module>
 		<module>suns-gateway</module>
-		<module>suns-web-system</module>
 		<module>suns-eureka</module>
-		<module>suns-server-auth</module>
-		<module>suns-server-user</module>
-		<module>suns-server-core</module>
+		<module>suns-auth</module>
 		<module>suns-config</module>
-		<module>suns-mq</module>
 		<module>suns-api</module>
-		<module>suns-sso</module>
-        <module>suns-web-demo1</module>
-        <module>suns-security</module>
-    </modules>
+        <module>suns-server</module>
+		<module>suns-monitor</module>
+	</modules>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

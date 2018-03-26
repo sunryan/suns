@@ -1,7 +1,7 @@
 package com.ryan.suns.api.feign.user;
 
 import com.ryan.suns.api.feign.config.FeignConfiguration;
-import com.ryan.suns.common.model.auth.User;
+import com.ryan.suns.common.model.user.SysUser;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface UserClient {
     
     
-    @GetMapping("/selectByUsername")
-    User selectByUsername(@RequestParam("username") String username);
-
+    @GetMapping("/name/{username}")
+    SysUser findUserByUsername(@RequestParam("username") String username);
+    
+    @GetMapping("/{userId}")
+    SysUser findUserByUserId(@RequestParam("userId") String userId);
+    
+    @GetMapping("/mobile/{principal}")
+    SysUser findUserByMobile(@RequestParam("mobile") String mobile);
 }

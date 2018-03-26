@@ -5,17 +5,19 @@ import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author lr
  * @date 2018/2/12
  */
 @Data
-public class ResponseData {
+public class ResponseData<T> implements Serializable {
     
     private String code;
     private boolean success;
     private String message;
-    private Object data;
+    private T data;
     
     
     public static ResponseData OK() {
@@ -45,7 +47,7 @@ public class ResponseData {
         this.setMessage(message);
     }
     
-    public ResponseData(ResultCode code, String message, Object data) {
+    public ResponseData(ResultCode code, String message, T data) {
         this.setCode(code.val());
         this.setSuccess(code.success());
         this.setMessage(message);

@@ -1,6 +1,10 @@
 package com.ryan.suns.gateway.service.impl;
 
+import cn.hutool.core.collection.CollectionUtil;
+import com.ryan.suns.api.feign.user.MenuClient;
+import com.ryan.suns.common.model.user.SysMenu;
 import com.ryan.suns.gateway.service.PermissionService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,23 +24,38 @@ import java.util.Set;
 public class PermissionServiceImpl implements PermissionService {
 
     private AntPathMatcher antPathMatcher = new AntPathMatcher();
+    
+    @Autowired
+    private MenuClient menuClient;
 
     @Override
     public boolean hasPermission(HttpServletRequest request, Authentication authentication) {
-        //ele-admin options 跨域配置，现在处理是通过前端配置代理，不使用这种方式，存在风险
-//        if (HttpMethod.OPTIONS.name().equalsIgnoreCase(request.getMethod())) {
-//            return true;
-//        }
         Object principal = authentication.getPrincipal();
+        //用户拥有权限
         List<SimpleGrantedAuthority> grantedAuthorityList = (List<SimpleGrantedAuthority>) authentication.getAuthorities();
         boolean hasPermission = false;
 
         if (principal != null) {
             if("anonymousUser".equalsIgnoreCase((String)principal)){
-                return false;
+                return hasPermission;
             }
-            return true;
+            if (CollectionUtil.isEmpty(grantedAuthorityList)) {
+                return hasPermission;
+            }
+    
+            Set<SysMenu> urls = new HashSet<>();
+            for (SimpleGrantedAuthority authority : grantedAuthorityList) {
+                urls.addAll(menuClient.findMenuByRoleCode(authority.getAuthority()));
+            }
+    
+            for (SysMenu menu : urls) {
+                if (StringUtils.isNotEmpty(menu.getUrl()) && antPathMatcher.match(menu.getUrl(), request.getRequestURI())
+                        && request.getMethod().equalsIgnoreCase(menu.getMethod())) {
+                    hasPermission = true;
+                    break;
+                }
+            }
         }
-        return false;
+        return hasPermission;
     }
 }

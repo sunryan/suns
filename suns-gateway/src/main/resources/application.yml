@@ -19,7 +19,7 @@ zuul:
     routes:
         auth:
             path: /auth/**
-            serviceId: suns-server-auth
+            serviceId: suns-auth
         server-user:
             path: /user/**
             serviceId: suns-server-user
@@ -36,7 +36,7 @@ security:
     oauth2:
         resource:
             loadBalanced: true
-            user-info-uri: http://suns-server-auth/user
+            user-info-uri: http://suns-auth/user
             prefer-token-info: false
             service-id: suns-gateway
 
@@ -44,12 +44,3 @@ urls:
     anon:
         - /mobile/**
         - /auth/**
-        - /admin/code/*
-        - /admin/smsCode/*
-        - /admin/user/info
-        - /admin/menu/userTree
-        - /swagger-resources/**
-        - /swagger-ui.html
-        - /*/v2/api-docs
-        - /swagger/api-docs
-        - /webjars/**

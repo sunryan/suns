@@ -1,0 +1,34 @@
+spring:
+    application:
+        name: suns-auth
+
+    redis:
+        host: 127.0.0.1
+        port: 6379
+        remote: true        #cachecloud 获取
+
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: 123456
+        url: jdbc:mysql://127.0.0.1:3306/suns?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+
+server:
+    port: 8201
+
+urls:
+    anon:
+        - /oauth/**
+        - /signup
+        - /mobile/token
+
+suns:
+    auth:
+        clientId: ryan
+        clientSecret: ryanSecret
+        scope: server
+    social:
+        qq:
+            providerId: qq
+            clientId: 252f7eb688ceca204c50
+            clientSecret: ef0616fa5f3f54263cb11d6c369efb240ef5da2f
