@@ -1,4 +1,4 @@
-package com.ryan.suns.auth.util;
+package com.ryan.suns.auth.component;
 
 import com.ryan.suns.common.constant.SecurityConstants;
 import com.ryan.suns.common.model.user.SysRole;

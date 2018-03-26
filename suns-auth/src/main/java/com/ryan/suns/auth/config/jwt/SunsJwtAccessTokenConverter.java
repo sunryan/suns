@@ -1,6 +1,6 @@
 package com.ryan.suns.auth.config.jwt;
 
-import com.ryan.suns.auth.util.UserDetailsImpl;
+import com.ryan.suns.auth.component.UserDetailsImpl;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;

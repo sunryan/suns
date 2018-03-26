@@ -1,7 +1,7 @@
 package com.ryan.suns.auth.component.mobile;
 
 import com.ryan.suns.api.feign.user.UserClient;
-import com.ryan.suns.auth.util.UserDetailsImpl;
+import com.ryan.suns.auth.component.UserDetailsImpl;
 import com.ryan.suns.common.model.user.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;

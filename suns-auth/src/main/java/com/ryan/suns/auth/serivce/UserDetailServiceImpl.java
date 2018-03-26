@@ -1,7 +1,7 @@
 package com.ryan.suns.auth.serivce;
 
 import com.ryan.suns.api.feign.user.UserClient;
-import com.ryan.suns.auth.util.UserDetailsImpl;
+import com.ryan.suns.auth.component.UserDetailsImpl;
 import com.ryan.suns.common.constant.SecurityConstants;
 import com.ryan.suns.common.model.user.SysRole;
 import com.ryan.suns.common.model.user.SysUser;

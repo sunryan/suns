@@ -1,6 +1,7 @@
 package com.ryan.suns.auth.config;
 
 import com.ryan.suns.auth.component.SunsWebResponseExceptionTranslator;
+import com.ryan.suns.auth.config.jwt.SunsJwtAccessTokenConverter;
 import com.ryan.suns.common.constant.CommonConstant;
 import com.ryan.suns.common.constant.SecurityConstants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +68,7 @@ public class SunsAuthorizationConfig extends AuthorizationServerConfigurerAdapte
     }
 
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+    public void configure(AuthorizationServerSecurityConfigurer security) {
         security
                 .allowFormAuthenticationForClients()
                 .tokenKeyAccess("isAuthenticated()")
@@ -81,7 +82,7 @@ public class SunsAuthorizationConfig extends AuthorizationServerConfigurerAdapte
 
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
-        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+        JwtAccessTokenConverter jwtAccessTokenConverter = new SunsJwtAccessTokenConverter();
         jwtAccessTokenConverter.setSigningKey(CommonConstant.SIGN_KEY);
         return jwtAccessTokenConverter;
     }
