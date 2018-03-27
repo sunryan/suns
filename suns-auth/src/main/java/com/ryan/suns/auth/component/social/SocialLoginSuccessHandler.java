@@ -9,7 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
-import org.springframework.security.oauth2.provider.*;
+import org.springframework.security.oauth2.provider.ClientDetails;
+import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.provider.OAuth2Request;
+import org.springframework.security.oauth2.provider.TokenRequest;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -31,7 +35,7 @@ public class SocialLoginSuccessHandler implements AuthenticationSuccessHandler {
     @Autowired
     private ClientDetailsService clientDetailsService;
     @Autowired
-    private AuthorizationServerTokenServices authorizationServerTokenServices;
+    private AuthorizationServerTokenServices defaultAuthorizationServerTokenServices;
 
     /**
      * Called when a user has been successfully authenticated.
@@ -57,7 +61,7 @@ public class SocialLoginSuccessHandler implements AuthenticationSuccessHandler {
             OAuth2Request oAuth2Request = tokenRequest.createOAuth2Request(clientDetails);
 
             OAuth2Authentication oAuth2Authentication = new OAuth2Authentication(oAuth2Request, authentication);
-            OAuth2AccessToken oAuth2AccessToken = authorizationServerTokenServices.createAccessToken(oAuth2Authentication);
+            OAuth2AccessToken oAuth2AccessToken = defaultAuthorizationServerTokenServices.createAccessToken(oAuth2Authentication);
             logger.info("获取token 成功：{}", oAuth2AccessToken.getValue());
 
             String url = String.format("http://localhost:9527/#/login?access_token=%s&refresh_token=%s"

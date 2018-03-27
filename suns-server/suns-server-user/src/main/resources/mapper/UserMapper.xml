@@ -16,21 +16,21 @@
     </resultMap>
 
 
-    <select id="selectByUsername" resultType="com.ryan.suns.common.model.user.SysUser">
+    <select id="selectByUsername" resultMap="userResultMap">
         SELECT u.userId,u.username,u.password,u.avatar,r.roleId,r.roleName,r.roleCode FROM sys_user u
         LEFT JOIN sys_user_role ur ON ur.userId = u.userId
         LEFT JOIN sys_role r ON r.roleId = ur.roleId
         where u.delFlag = 0 and r.delFlag = 0 and u.userName = #{username} limit 1
     </select>
 
-    <select id="selectByUserId" resultType="com.ryan.suns.common.model.user.SysUser">
+    <select id="selectByUserId" resultMap="userResultMap">
         SELECT u.userId,u.username,u.password,u.avatar,r.roleId,r.roleName,r.roleCode FROM sys_user u
         LEFT JOIN sys_user_role ur ON ur.userId = u.userId
         LEFT JOIN sys_role r ON r.roleId = ur.roleId
         where u.delFlag = 0 and r.delFlag = 0 and u.userId = #{userId}
     </select>
 
-    <select id="findUserByMobile" resultType="com.ryan.suns.common.model.user.SysUser">
+    <select id="findUserByMobile" resultMap="userResultMap">
         SELECT u.userId,u.username,u.password,u.avatar,r.roleId,r.roleName,r.roleCode FROM sys_user u
         LEFT JOIN sys_user_role ur ON ur.userId = u.userId
         LEFT JOIN sys_role r ON r.roleId = ur.roleId

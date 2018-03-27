@@ -12,9 +12,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @SpringBootApplication
 @EnableDiscoveryClient
 @MapperScan(basePackages = "com.ryan.suns.user.mapper")
-public class UserAppliction {
+public class SunsUserAppliction {
 
     public static void main(String[] args) {
-        SpringApplication.run(UserAppliction.class, args);
+        SpringApplication.run(SunsUserAppliction.class, args);
     }
 }

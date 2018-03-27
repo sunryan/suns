@@ -29,6 +29,11 @@ zuul:
 
     add-proxy-headers: true
 
+    host:
+        connect-timeout-millis: 10000
+        socket-timeout-millis: 60000
+
+
 security:
     validate:
         code: false
@@ -36,7 +41,7 @@ security:
     oauth2:
         resource:
             loadBalanced: true
-            user-info-uri: http://suns-auth/user
+            user-info-uri: http://localhost:${server.port}/auth/user
             prefer-token-info: false
             service-id: suns-gateway
 

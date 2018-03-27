@@ -19,7 +19,6 @@ server:
 urls:
     anon:
         - /authentication/**
-        - /oauth/token
         - /signup
         - /mobile/token
 

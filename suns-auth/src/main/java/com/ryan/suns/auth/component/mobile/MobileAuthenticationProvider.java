@@ -3,7 +3,6 @@ package com.ryan.suns.auth.component.mobile;
 import com.ryan.suns.api.feign.user.UserClient;
 import com.ryan.suns.auth.component.UserDetailsImpl;
 import com.ryan.suns.common.model.user.SysUser;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.Authentication;
@@ -16,7 +15,6 @@ import org.springframework.security.core.AuthenticationException;
  */
 public class MobileAuthenticationProvider implements AuthenticationProvider {
     
-    @Autowired
     private UserClient userClient;
     
     
@@ -24,12 +22,12 @@ public class MobileAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         MobileAuthenticationToken mobileAuthenticationToken = (MobileAuthenticationToken) authentication;
         SysUser sysUser = userClient.findUserByMobile((String) mobileAuthenticationToken.getPrincipal());
-
-        UserDetailsImpl userDetails = buildUserDeatils(sysUser);
-        if (userDetails == null) {
+        if (sysUser == null) {
             throw new InternalAuthenticationServiceException("手机号不存在:" + mobileAuthenticationToken.getPrincipal());
         }
 
+        UserDetailsImpl userDetails = buildUserDeatils(sysUser);
+       
         MobileAuthenticationToken authenticationToken = new MobileAuthenticationToken(userDetails, userDetails.getAuthorities());
         authenticationToken.setDetails(mobileAuthenticationToken.getDetails());
         return authenticationToken;
@@ -43,5 +41,8 @@ public class MobileAuthenticationProvider implements AuthenticationProvider {
     public boolean supports(Class<?> authentication) {
         return MobileAuthenticationToken.class.isAssignableFrom(authentication);
     }
-
+    
+    public void setUserClient(UserClient userClient) {
+        this.userClient = userClient;
+    }
 }

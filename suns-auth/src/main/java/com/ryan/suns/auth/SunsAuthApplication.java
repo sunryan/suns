@@ -16,10 +16,10 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = "com.ryan.suns.api.feign")
 @ComponentScan(basePackages = {"com.ryan.suns.auth", "com.ryan.suns.common.config"})
-public class SunsAuthServerApplication {
+public class SunsAuthApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SunsAuthServerApplication.class, args);
+        SpringApplication.run(SunsAuthApplication.class, args);
     }
 
 }

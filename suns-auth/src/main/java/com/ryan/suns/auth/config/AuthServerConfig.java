@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2017/10/28
  */
 @Configuration
-@ConfigurationProperties(prefix = "suns.user")
+@ConfigurationProperties(prefix = "suns.auth")
 public class AuthServerConfig {
     private String clientId;
     private String clientSecret;

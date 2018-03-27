@@ -8,7 +8,6 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
 
 /**
@@ -17,7 +16,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 @EnableZuulProxy
 @SpringBootApplication
 @EnableFeignClients(basePackages = "com.ryan.suns.api.feign")
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 @ComponentScan(basePackages = {"com.ryan.suns.gateway", "com.ryan.suns.common.config"})
 public class SunsGatewayApplication {
     

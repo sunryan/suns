@@ -1,10 +1,10 @@
 package com.ryan.suns.common.model.user;
 
+import com.ryan.suns.common.model.BaseEntity;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,21 +12,24 @@ import java.util.List;
  * @date 2018/3/22.
  */
 @Data
-public class SysUser implements Serializable {
+public class SysUser extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键ID
+     * 用户ID
      */
     private Integer userId;
+    
     /**
      * 用户名
      */
     private String username;
+    
     /**
      * 密码
      */
     private String password;
+    
     /**
      * 随机盐
      */
@@ -36,22 +39,17 @@ public class SysUser implements Serializable {
      * 手机号
      */
     private String mobile;
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-    /**
-     * 修改时间
-     */
-    private Date updateTime;
+    
     /**
      * 0-正常，1-删除
      */
     private String delFlag;
+    
     /**
      * 简介
      */
     private String introduction;
+    
     /**
      * 头像
      */
@@ -61,6 +59,7 @@ public class SysUser implements Serializable {
      * 部门ID
      */
     private Integer deptId;
+    
     /**
      * 部门名称
      */
@@ -70,12 +69,6 @@ public class SysUser implements Serializable {
      * 角色列表
      */
     private List<SysRole> roleList = new ArrayList<>();
-
-
-    public SysUser(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
 
 }
 

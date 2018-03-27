@@ -20,6 +20,6 @@ public interface UserClient {
     @GetMapping("/{userId}")
     SysUser findUserByUserId(@RequestParam("userId") String userId);
     
-    @GetMapping("/mobile/{principal}")
+    @GetMapping("/mobile/{mobile}")
     SysUser findUserByMobile(@RequestParam("mobile") String mobile);
 }
