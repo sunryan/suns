@@ -1,5 +1,7 @@
 package com.ryan.suns.common.model.user;
 
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.ryan.suns.common.model.BaseEntity;
 import lombok.Data;
 
@@ -12,7 +14,9 @@ import java.util.List;
  * @date 2018/3/22.
  */
 @Data
-public class SysUser extends BaseEntity implements Serializable {
+@TableName("sys_user")
+public class SysUser extends BaseEntity<SysRole> implements Serializable {
+    
     private static final long serialVersionUID = 1L;
 
     /**
@@ -63,12 +67,18 @@ public class SysUser extends BaseEntity implements Serializable {
     /**
      * 部门名称
      */
+    @TableField(exist = false)
     private String deptName;
 
     /**
      * 角色列表
      */
+    @TableField(exist = false)
     private List<SysRole> roleList = new ArrayList<>();
-
+    
+    @Override
+    protected Serializable pkVal() {
+        return userId;
+    }
 }
 

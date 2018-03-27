@@ -11,7 +11,7 @@ import java.util.List;
  * @date 2018/3/26
  */
 @Component
-public interface MenuMapper {
+public interface MenuMapper extends SuperMapper<SysMenu>{
     
     List<SysMenu> findMenuByRoleCode(@Param("roleCode") String roleCode);
 }

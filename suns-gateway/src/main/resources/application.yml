@@ -13,6 +13,10 @@ server:
     port: 8103
 
 zuul:
+    host:
+        connect-timeout-millis: 10000
+        socket-timeout-millis: 60000
+
     ignored-services: "*"   #滤服务之间通信附带的headers
     sensitiveHeaders: "*"   #过滤客户端附带的headers
 #    prefix: /api #为zuul设置一个公共的前缀
@@ -28,10 +32,6 @@ zuul:
             serviceId: suns-server-core
 
     add-proxy-headers: true
-
-    host:
-        connect-timeout-millis: 10000
-        socket-timeout-millis: 60000
 
 
 security:
@@ -49,3 +49,11 @@ urls:
     anon:
         - /mobile/**
         - /auth/**
+
+hystrix:
+    command:
+        default:
+            execution:
+                isolation:
+                    thread:
+                        timeoutInMilliseconds: 60000

@@ -1,9 +1,11 @@
 package com.ryan.suns.user.control;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.ryan.suns.api.feign.user.UserClient;
 import com.ryan.suns.api.user.UserService;
 import com.ryan.suns.common.model.user.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,5 +34,15 @@ public class UserControl  implements UserClient {
     public SysUser findUserByMobile(String mobile) {
         return userService.findUserByMobile(mobile);
     }
+    
+    
+    /**
+     * 分页 PAGE
+     */
+    @GetMapping("/test")
+    public Page<SysUser> test() {
+        return userService.selectPage(new Page<SysUser>(0, 12));
+    }
+    
     
 }

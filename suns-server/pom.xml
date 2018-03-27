@@ -12,9 +12,17 @@
 
     <artifactId>suns-server</artifactId>
 
+    <properties>
+        <mybatis-plus-boot-starter.version>2.1.9</mybatis-plus-boot-starter.version>
+        <mybatisplus.version>2.1.8</mybatisplus.version>
+    </properties>
+
+
     <modules>
         <module>suns-server-user</module>
         <module>suns-server-core</module>
+        <module>suns-server-core</module>
+        <module>suns-server-mybatisPlus</module>
     </modules>
 
 </project>

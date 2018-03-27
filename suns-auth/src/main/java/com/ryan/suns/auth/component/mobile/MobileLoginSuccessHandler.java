@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class MobileLoginSuccessHandler extends SunsAuthenticationSuccessHandler {
     
     protected String getGrantType(){
-        return "moblie";
+        return MobileAuthenticationFilter.SPRING_SECURITY_FORM_MOBILE_KEY;
     }
 
 }

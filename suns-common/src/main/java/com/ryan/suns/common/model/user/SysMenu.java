@@ -1,5 +1,6 @@
 package com.ryan.suns.common.model.user;
 
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.ryan.suns.common.model.BaseEntity;
 import lombok.Data;
 
@@ -10,7 +11,8 @@ import java.io.Serializable;
  * @date 2018/3/26
  */
 @Data
-public class SysMenu extends BaseEntity implements Serializable {
+@TableName("sys_menu")
+public class SysMenu extends BaseEntity<SysMenu>{
     
     private static final long serialVersionUID = 1L;
     
@@ -68,4 +70,9 @@ public class SysMenu extends BaseEntity implements Serializable {
      * 0--正常 1--删除
      */
     private String delFlag;
+    
+    @Override
+    protected Serializable pkVal() {
+        return menuId;
+    }
 }

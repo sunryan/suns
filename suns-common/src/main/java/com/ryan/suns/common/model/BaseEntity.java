@@ -1,8 +1,9 @@
 package com.ryan.suns.common.model;
 
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,15 +11,18 @@ import java.util.Date;
  * @date 2018/3/27
  */
 @Data
-public class BaseEntity implements Serializable {
+public abstract class BaseEntity<T extends Model> extends Model<T> {
+    
     
     /**
      * 创建时间
      */
+    
     private Date createTime;
     /**
      * 修改时间
      */
+    @TableField(update = "now()")
     private Date updateTime;
     
 }

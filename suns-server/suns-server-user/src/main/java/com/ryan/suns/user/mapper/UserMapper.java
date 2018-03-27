@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface UserMapper {
+public interface UserMapper extends SuperMapper<SysUser>{
 
     SysUser selectByUsername(@Param("username") String username);
     

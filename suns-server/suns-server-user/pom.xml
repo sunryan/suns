@@ -45,5 +45,19 @@
             <artifactId>mapper-spring-boot-starter</artifactId>
             <version>${mybatisplus.spring.boot.version}</version>
         </dependency>
+
+        <!-- mybatis-plus begin -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis-plus-boot-starter.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>tomcat-jdbc</artifactId>
+                    <groupId>org.apache.tomcat</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- mybatis-plus end -->
     </dependencies>
 </project>
