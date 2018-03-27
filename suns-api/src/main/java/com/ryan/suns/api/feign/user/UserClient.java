@@ -15,11 +15,11 @@ public interface UserClient {
     
     
     @GetMapping("/name/{username}")
-    SysUser findUserByUsername(@RequestParam("username") String username);
+    SysUser findUserByUsername(@RequestParam(value = "username") String username);
     
     @GetMapping("/{userId}")
-    SysUser findUserByUserId(@RequestParam("userId") String userId);
+    SysUser findUserByUserId(@RequestParam(value = "userId") String userId);
     
     @GetMapping("/mobile/{mobile}")
-    SysUser findUserByMobile(@RequestParam("mobile") String mobile);
+    SysUser findUserByMobile(@RequestParam(value = "mobile") String mobile);
 }

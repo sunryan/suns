@@ -7,7 +7,6 @@ import com.ryan.suns.common.constant.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.codec.Base64;
@@ -19,7 +18,6 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.OAuth2Request;
 import org.springframework.security.oauth2.provider.TokenRequest;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
-import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,10 +42,8 @@ public abstract class SunsAuthenticationSuccessHandler implements Authentication
     @Autowired
     private ClientDetailsService clientDetailsService;
     
-    @Bean
-    public AuthorizationServerTokenServices defaultAuthorizationServerTokenServices() {
-        return new DefaultTokenServices();
-    }
+    @Autowired
+    private AuthorizationServerTokenServices defaultAuthorizationServerTokenServices;
     
     
     
@@ -83,7 +79,7 @@ public abstract class SunsAuthenticationSuccessHandler implements Authentication
             OAuth2Request oAuth2Request = tokenRequest.createOAuth2Request(clientDetails);
             
             OAuth2Authentication oAuth2Authentication = new OAuth2Authentication(oAuth2Request, authentication);
-            OAuth2AccessToken oAuth2AccessToken = defaultAuthorizationServerTokenServices().createAccessToken(oAuth2Authentication);
+            OAuth2AccessToken oAuth2AccessToken = defaultAuthorizationServerTokenServices.createAccessToken(oAuth2Authentication);
             logger.info("获取token 成功：{}", oAuth2AccessToken.getValue());
             
             response.setCharacterEncoding(CommonConstant.UTF8);

@@ -21,7 +21,7 @@ public class MobileSecurityConfigurer extends SecurityConfigurerAdapter<DefaultS
     @Autowired
     private AuthenticationSuccessHandler mobileLoginSuccessHandler;
     @Autowired
-    private AuthenticationFailureHandler authenctiationFailureHandler;
+    private AuthenticationFailureHandler mobileLoginFailureHandler;
     @Autowired
     private UserClient userClient;
     
@@ -31,7 +31,7 @@ public class MobileSecurityConfigurer extends SecurityConfigurerAdapter<DefaultS
         MobileAuthenticationFilter mobileAuthenticationFilter = new MobileAuthenticationFilter();
         mobileAuthenticationFilter.setAuthenticationManager(http.getSharedObject(AuthenticationManager.class));
         mobileAuthenticationFilter.setAuthenticationSuccessHandler(mobileLoginSuccessHandler);
-        mobileAuthenticationFilter.setAuthenticationFailureHandler(authenctiationFailureHandler);
+        mobileAuthenticationFilter.setAuthenticationFailureHandler(mobileLoginFailureHandler);
 
         MobileAuthenticationProvider mobileAuthenticationProvider = new MobileAuthenticationProvider();
         mobileAuthenticationProvider.setUserClient(userClient);

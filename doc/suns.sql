@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2018-03-26 14:51:48
+Date: 2018-03-27 16:23:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -78,19 +78,19 @@ INSERT INTO `sys_menu` VALUES ('11', 'pinpoint监控', null, null, null, null, '
 INSERT INTO `sys_menu` VALUES ('12', '缓存状态', null, null, null, null, '8', null, '_import(\'admin/monitor/cache\')', null, '0', '2018-01-23 10:56:11', null, '0');
 INSERT INTO `sys_menu` VALUES ('13', 'ELK状态', null, null, null, null, '8', null, '_import(\'admin/monitor/elk\')', null, '0', '2018-01-23 10:55:47', '2018-01-25 11:11:40', '0');
 INSERT INTO `sys_menu` VALUES ('14', '接口文档', null, null, null, null, '8', null, '_import(\'admin/monitor/swagger\')', null, '0', '2018-01-23 10:56:43', '2018-01-25 11:11:45', '0');
-INSERT INTO `sys_menu` VALUES ('21', '用户查看', '', null, '/admin/user/**', 'GET', '2', null, null, null, '1', '2017-11-07 20:58:05', '2018-02-04 14:28:49', '0');
-INSERT INTO `sys_menu` VALUES ('22', '用户新增', 'sys_user_add', null, '/admin/user/*', 'POST', '2', null, null, null, '1', '2017-11-08 09:52:09', '2017-12-04 16:31:10', '0');
-INSERT INTO `sys_menu` VALUES ('23', '用户修改', 'sys_user_upd', null, '/admin/user/**', 'PUT', '2', null, null, null, '1', '2017-11-08 09:52:48', '2018-01-17 17:40:01', '0');
-INSERT INTO `sys_menu` VALUES ('24', '用户删除', 'sys_user_del', null, '/admin/user/*', 'DELETE', '2', null, null, null, '1', '2017-11-08 09:54:01', '2017-12-04 16:31:18', '0');
-INSERT INTO `sys_menu` VALUES ('31', '菜单查看', null, null, '/admin/menu/**', 'GET', '3', null, null, null, '1', '2017-11-08 09:57:56', '2017-11-14 17:29:17', '0');
-INSERT INTO `sys_menu` VALUES ('32', '菜单新增', 'sys_menu_add', null, '/admin/menu/*', 'POST', '3', null, null, null, '1', '2017-11-08 10:15:53', '2018-01-20 14:37:50', '0');
-INSERT INTO `sys_menu` VALUES ('33', '菜单修改', 'sys_menu_edit', null, '/admin/menu/*', 'PUT', '3', null, null, null, '1', '2017-11-08 10:16:23', '2018-01-20 14:37:56', '0');
-INSERT INTO `sys_menu` VALUES ('34', '菜单删除', 'sys_menu_del', null, '/admin/menu/*', 'DELETE', '3', null, null, null, '1', '2017-11-08 10:16:43', '2018-01-20 14:38:03', '0');
-INSERT INTO `sys_menu` VALUES ('41', '角色查看', null, null, '/admin/role/**', 'GET', '4', null, null, null, '1', '2017-11-08 10:14:01', '2018-02-04 13:55:06', '0');
-INSERT INTO `sys_menu` VALUES ('42', '角色新增', null, null, '/admin/role/*', 'POST', '4', null, null, null, '1', '2017-11-08 10:14:18', '2017-11-14 14:10:03', '0');
-INSERT INTO `sys_menu` VALUES ('43', '角色修改', null, null, '/admin/role/*', 'PUT', '4', null, null, null, '1', '2017-11-08 10:14:41', '2017-11-08 20:35:33', '0');
-INSERT INTO `sys_menu` VALUES ('44', '角色删除', null, null, '/admin/role/*', 'DELETE', '4', null, null, null, '1', '2017-11-08 10:14:59', '2017-11-08 20:35:35', '0');
-INSERT INTO `sys_menu` VALUES ('51', '日志查看', null, null, '/admin/log/**', 'GET', '5', null, null, null, '1', '2017-11-20 14:07:25', '2018-02-04 14:28:53', '0');
+INSERT INTO `sys_menu` VALUES ('21', '用户查看', '', null, '/user/api/user/**', 'GET', '2', null, null, null, '1', '2017-11-07 20:58:05', '2018-02-04 14:28:49', '0');
+INSERT INTO `sys_menu` VALUES ('22', '用户新增', 'sys_user_add', null, '/user/api/user/*', 'POST', '2', null, null, null, '1', '2017-11-08 09:52:09', '2017-12-04 16:31:10', '0');
+INSERT INTO `sys_menu` VALUES ('23', '用户修改', 'sys_user_upd', null, '/user/api/user/**', 'PUT', '2', null, null, null, '1', '2017-11-08 09:52:48', '2018-01-17 17:40:01', '0');
+INSERT INTO `sys_menu` VALUES ('24', '用户删除', 'sys_user_del', null, '/user/api/user/*', 'DELETE', '2', null, null, null, '1', '2017-11-08 09:54:01', '2017-12-04 16:31:18', '0');
+INSERT INTO `sys_menu` VALUES ('31', '菜单查看', null, null, '/user/api/menu/**', 'GET', '3', null, null, null, '1', '2017-11-08 09:57:56', '2017-11-14 17:29:17', '0');
+INSERT INTO `sys_menu` VALUES ('32', '菜单新增', 'sys_menu_add', null, '/user/api/menu/*', 'POST', '3', null, null, null, '1', '2017-11-08 10:15:53', '2018-01-20 14:37:50', '0');
+INSERT INTO `sys_menu` VALUES ('33', '菜单修改', 'sys_menu_edit', null, '/user/api/menu/*', 'PUT', '3', null, null, null, '1', '2017-11-08 10:16:23', '2018-01-20 14:37:56', '0');
+INSERT INTO `sys_menu` VALUES ('34', '菜单删除', 'sys_menu_del', null, '/user/api/menu/*', 'DELETE', '3', null, null, null, '1', '2017-11-08 10:16:43', '2018-01-20 14:38:03', '0');
+INSERT INTO `sys_menu` VALUES ('41', '角色查看', null, null, '/user/api/role/**', 'GET', '4', null, null, null, '1', '2017-11-08 10:14:01', '2018-02-04 13:55:06', '0');
+INSERT INTO `sys_menu` VALUES ('42', '角色新增', null, null, '/user/api/role/*', 'POST', '4', null, null, null, '1', '2017-11-08 10:14:18', '2017-11-14 14:10:03', '0');
+INSERT INTO `sys_menu` VALUES ('43', '角色修改', null, null, '/user/api/role/*', 'PUT', '4', null, null, null, '1', '2017-11-08 10:14:41', '2017-11-08 20:35:33', '0');
+INSERT INTO `sys_menu` VALUES ('44', '角色删除', null, null, '/user/api/role/*', 'DELETE', '4', null, null, null, '1', '2017-11-08 10:14:59', '2017-11-08 20:35:35', '0');
+INSERT INTO `sys_menu` VALUES ('51', '日志查看', null, null, '/user/api/log/**', 'GET', '5', null, null, null, '1', '2017-11-20 14:07:25', '2018-02-04 14:28:53', '0');
 INSERT INTO `sys_menu` VALUES ('52', '日志删除', 'sys_log_del', null, '/admin/log/*', 'DELETE', '5', null, null, null, '1', '2017-11-20 20:37:37', '2017-11-28 17:36:52', '0');
 INSERT INTO `sys_menu` VALUES ('61', '字典查看', null, null, '/admin/dict/**', 'GET', '6', null, null, null, '1', '2017-11-19 22:04:24', '2017-11-29 11:31:24', '0');
 INSERT INTO `sys_menu` VALUES ('62', '字典删除', 'sys_dict_del', null, '/admin/dict/**', 'DELETE', '6', null, null, null, '1', '2017-11-29 11:30:11', '2018-01-07 15:40:51', '0');
@@ -112,12 +112,13 @@ CREATE TABLE `sys_role` (
   `delFlag` tinyint(1) DEFAULT '0' COMMENT '删除标识（0-正常,1-删除）',
   PRIMARY KEY (`roleId`),
   UNIQUE KEY `role_idx_role_code` (`roleCode`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='用户角色表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='用户角色表';
 
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
-INSERT INTO `sys_role` VALUES ('1', 'admin', 'ROLE_ADMIN', '2018-03-08 17:45:44', '2018-01-28 12:46:43', '0');
+INSERT INTO `sys_role` VALUES ('1', '超级管理员', 'ROLE_ADMIN', '2018-03-27 15:35:15', '2018-01-28 12:46:43', '0');
+INSERT INTO `sys_role` VALUES ('2', '普通用户', 'ROLE_USER', '2018-03-27 15:35:10', '2018-01-28 12:46:43', '0');
 
 -- ----------------------------
 -- Table structure for sys_role_menu
@@ -129,7 +130,7 @@ CREATE TABLE `sys_role_menu` (
   `menuId` int(11) NOT NULL COMMENT '菜单ID',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_role_menu` (`roleId`,`menuId`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='角色菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='角色菜单表';
 
 -- ----------------------------
 -- Records of sys_role_menu
@@ -166,6 +167,7 @@ INSERT INTO `sys_role_menu` VALUES ('29', '1', '71');
 INSERT INTO `sys_role_menu` VALUES ('30', '1', '72');
 INSERT INTO `sys_role_menu` VALUES ('31', '1', '73');
 INSERT INTO `sys_role_menu` VALUES ('32', '1', '74');
+INSERT INTO `sys_role_menu` VALUES ('33', '2', '21');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -184,13 +186,15 @@ CREATE TABLE `sys_user` (
   `updateTime` timestamp NULL DEFAULT NULL COMMENT '修改时间',
   `delFlag` tinyint(1) DEFAULT '0' COMMENT '0-正常，1-删除',
   PRIMARY KEY (`userId`),
-  UNIQUE KEY `user_idx_username` (`username`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='用户表';
+  UNIQUE KEY `user_idx_username` (`username`) USING BTREE,
+  UNIQUE KEY `user_idx_mobile` (`mobile`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='用户表';
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('1', 'admin', '$2a$10$gBejTEife2WvJzysrRDXL.MVNCcBsso3adMZWQDsVewCDUaIsIvSK', null, '17326092280', '17034642119', 'http://p0hpm86wj.bkt.clouddn.com/10bd0c7c-03c7-4ad1-8366-b24b4201b969.png', '3', '2017-10-29 15:45:13', '2018-02-28 17:44:56', '0');
+INSERT INTO `sys_user` VALUES ('2', 'ryan', '$2a$10$gBejTEife2WvJzysrRDXL.MVNCcBsso3adMZWQDsVewCDUaIsIvSK', null, '17326092281', '17034642119', null, '2', null, null, '0');
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -202,16 +206,11 @@ CREATE TABLE `sys_user_role` (
   `roleId` int(11) NOT NULL COMMENT '角色ID',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_user_role` (`userId`,`roleId`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户角色表';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户角色表';
 
 -- ----------------------------
 -- Records of sys_user_role
 -- ----------------------------
 INSERT INTO `sys_user_role` VALUES ('1', '1', '1');
-INSERT INTO `sys_user_role` VALUES ('2', '6', '2');
-INSERT INTO `sys_user_role` VALUES ('3', '9', '9');
-INSERT INTO `sys_user_role` VALUES ('4', '10', '2');
-INSERT INTO `sys_user_role` VALUES ('5', '11', '1');
-INSERT INTO `sys_user_role` VALUES ('6', '12', '11');
-INSERT INTO `sys_user_role` VALUES ('7', '13', '1');
-INSERT INTO `sys_user_role` VALUES ('8', '14', '5');
+INSERT INTO `sys_user_role` VALUES ('2', '1', '2');
+INSERT INTO `sys_user_role` VALUES ('3', '2', '2');

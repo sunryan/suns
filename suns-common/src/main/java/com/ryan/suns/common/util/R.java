@@ -1,27 +1,27 @@
 package com.ryan.suns.common.util;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
  * @author lr
  * @date 2018/3/22.
  */
+@Data
 public class R<T>  implements Serializable {
 
 
     private static final long serialVersionUID = 1L;
 
-    public static final int NO_LOGIN = -1;
+    public static final boolean SUCCESS = true;
 
-    public static final int SUCCESS = 0;
-
-    public static final int FAIL = 1;
-
-    public static final int NO_PERMISSION = 2;
+    public static final boolean FAIL = false;
+    
 
     private String msg = "success";
 
-    private int code = SUCCESS;
+    private boolean success = SUCCESS;
 
     private T data;
 
@@ -37,30 +37,18 @@ public class R<T>  implements Serializable {
     public R(Throwable e) {
         super();
         this.msg = e.getMessage();
-        this.code = FAIL;
+        this.success = FAIL;
     }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
+    
+    public R OK(T data) {
         this.data = data;
+        return this;
     }
+    
+    public R fail(String msg) {
+        this.msg = msg;
+        this.success = FAIL;
+        return this;
+    }
+
 }

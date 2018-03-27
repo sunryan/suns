@@ -10,7 +10,7 @@ public enum ResultCode {
     SUCCESS("200", "成功", true),
     
     /** 操作失败 */
-    FAIL("205", "操失败", false),
+    FAIL("205", "操作失败", false),
     
     /** 数据已存在 */
     SUCCESS_IS_HAVE("208", "数据已存在", false),

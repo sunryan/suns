@@ -1,7 +1,7 @@
 package com.ryan.suns.user.control;
 
-import com.ryan.suns.api.user.UserService;
 import com.ryan.suns.api.feign.user.UserClient;
+import com.ryan.suns.api.user.UserService;
 import com.ryan.suns.common.model.user.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

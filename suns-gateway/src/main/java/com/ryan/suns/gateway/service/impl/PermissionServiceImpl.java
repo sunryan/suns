@@ -6,6 +6,7 @@ import com.ryan.suns.common.model.user.SysMenu;
 import com.ryan.suns.gateway.service.PermissionService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,8 @@ public class PermissionServiceImpl implements PermissionService {
         boolean hasPermission = false;
 
         if (principal != null) {
-            if("anonymousUser".equalsIgnoreCase((String)principal)){
+            //AnonymousAuthenticationToken 无权限
+            if(AnonymousAuthenticationToken.class.isAssignableFrom(authentication.getClass())){
                 return hasPermission;
             }
             if (CollectionUtil.isEmpty(grantedAuthorityList)) {

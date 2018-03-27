@@ -2,9 +2,9 @@ package com.ryan.suns.auth.component.mobile;
 
 import com.ryan.suns.api.feign.user.UserClient;
 import com.ryan.suns.auth.component.UserDetailsImpl;
+import com.ryan.suns.auth.component.mobile.exception.MobileNotFundException;
 import com.ryan.suns.common.model.user.SysUser;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 
@@ -23,7 +23,7 @@ public class MobileAuthenticationProvider implements AuthenticationProvider {
         MobileAuthenticationToken mobileAuthenticationToken = (MobileAuthenticationToken) authentication;
         SysUser sysUser = userClient.findUserByMobile((String) mobileAuthenticationToken.getPrincipal());
         if (sysUser == null) {
-            throw new InternalAuthenticationServiceException("手机号不存在:" + mobileAuthenticationToken.getPrincipal());
+            throw new MobileNotFundException("手机号不存在:" + mobileAuthenticationToken.getPrincipal());
         }
 
         UserDetailsImpl userDetails = buildUserDeatils(sysUser);

@@ -20,6 +20,7 @@ urls:
     anon:
         - /authentication/**
         - /signup
+        - /social
         - /mobile/token
 
 suns:
