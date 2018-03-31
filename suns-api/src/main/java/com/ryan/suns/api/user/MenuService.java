@@ -1,6 +1,6 @@
 package com.ryan.suns.api.user;
 
-import com.ryan.suns.common.model.user.SysMenu;
+import com.ryan.suns.common.model.admin.SysMenu;
 
 import java.util.List;
 

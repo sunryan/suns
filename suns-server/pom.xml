@@ -19,10 +19,8 @@
 
 
     <modules>
-        <module>suns-server-user</module>
+        <module>suns-server-admin</module>
         <module>suns-server-core</module>
-        <module>suns-server-core</module>
-        <module>suns-server-mybatisPlus</module>
     </modules>
 
 </project>

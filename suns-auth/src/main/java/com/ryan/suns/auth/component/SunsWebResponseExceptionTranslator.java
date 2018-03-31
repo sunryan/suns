@@ -1,11 +1,15 @@
 package com.ryan.suns.auth.component;
 
+import com.ryan.suns.auth.exception.SunsOAuth2Exception;
+import com.ryan.suns.common.util.R;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.oauth2.common.exceptions.InvalidGrantException;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
-import org.springframework.security.oauth2.common.exceptions.UnsupportedResponseTypeException;
 import org.springframework.security.oauth2.provider.error.DefaultWebResponseExceptionTranslator;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +28,7 @@ import org.springframework.stereotype.Component;
  * PasswordComparisonAuthenticator.badCredentials=坏的凭证
  */
 @Component
+@Slf4j
 public class SunsWebResponseExceptionTranslator extends DefaultWebResponseExceptionTranslator {
 
     public static final String BAD_MSG = "坏的凭证";
@@ -34,16 +39,22 @@ public class SunsWebResponseExceptionTranslator extends DefaultWebResponseExcept
      * @throws Exception 通用异常
      */
     @Override
-    public ResponseEntity<OAuth2Exception> translate(Exception e) throws Exception {
-        OAuth2Exception oAuth2Exception;
+    public ResponseEntity translate(Exception e) throws Exception {
+        String msg = "";
         if (e instanceof InvalidGrantException && StringUtils.equals(BAD_MSG, e.getMessage())) {
-            oAuth2Exception = new InvalidGrantException("密码错误", e);
+            msg = "密码错误";
         } else if (e instanceof InternalAuthenticationServiceException) {
-            oAuth2Exception = new InvalidGrantException("用户名不存在", e);
+            msg = "用户名不存在";
         } else {
-            oAuth2Exception = new UnsupportedResponseTypeException("服务处理异常", e);
+            msg = "服务处理异常";
         }
-    
-        return super.translate(oAuth2Exception);
+        log.warn("登陆失败异常类:{}, 失败信息: {}", e.getClass(), e.getMessage());
+        OAuth2Exception oAuth2Exception = new SunsOAuth2Exception(e.getMessage(), e);
+        int status = oAuth2Exception.getHttpErrorCode();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Cache-Control", "no-store");
+        headers.set("Pragma", "no-cache");
+
+        return new ResponseEntity<R<String>>(new R().fail(e.getMessage()), headers, HttpStatus.valueOf(status));
     }
 }

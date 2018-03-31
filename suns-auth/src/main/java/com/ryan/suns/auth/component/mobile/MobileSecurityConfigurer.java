@@ -1,6 +1,6 @@
 package com.ryan.suns.auth.component.mobile;
 
-import com.ryan.suns.api.feign.user.UserClient;
+import com.ryan.suns.api.feign.admin.UserClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;

@@ -25,8 +25,8 @@ zuul:
             path: /auth/**
             serviceId: suns-auth
         server-user:
-            path: /user/**
-            serviceId: suns-server-user
+            path: /admin/**
+            serviceId: suns-server-admin
         server-core:
             path: /core/**
             serviceId: suns-server-core

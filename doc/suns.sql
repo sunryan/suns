@@ -65,7 +65,7 @@ CREATE TABLE `sys_menu` (
 -- Records of sys_menu
 -- ----------------------------
 INSERT INTO `sys_menu` VALUES ('1', '系统管理', null, '/admin', null, null, '-1', null, 'Layout', null, '0', '2017-11-07 20:56:00', '2017-11-14 14:26:03', '0');
-INSERT INTO `sys_menu` VALUES ('2', '用户管理', null, 'user', null, null, '1', null, '_import(\'admin/user\')', null, '0', '2017-11-02 22:24:37', '2017-11-14 15:22:40', '0');
+INSERT INTO `sys_menu` VALUES ('2', '用户管理', null, 'admin', null, null, '1', null, '_import(\'admin/admin\')', null, '0', '2017-11-02 22:24:37', '2017-11-14 15:22:40', '0');
 INSERT INTO `sys_menu` VALUES ('3', '菜单管理', null, 'menu', null, null, '1', null, '_import(\'admin/menu\')', null, '0', '2017-11-08 09:57:27', '2017-11-14 15:22:45', '0');
 INSERT INTO `sys_menu` VALUES ('4', '角色管理', null, 'role', null, null, '1', null, '_import(\'admin/role\')', null, '0', '2017-11-08 10:13:37', '2017-11-14 15:22:51', '0');
 INSERT INTO `sys_menu` VALUES ('5', '日志管理', null, 'log', null, null, '1', null, '_import(\'admin/log\')', null, '0', '2017-11-20 14:06:22', '2017-11-20 14:14:11', '0');
@@ -78,19 +78,19 @@ INSERT INTO `sys_menu` VALUES ('11', 'pinpoint监控', null, null, null, null, '
 INSERT INTO `sys_menu` VALUES ('12', '缓存状态', null, null, null, null, '8', null, '_import(\'admin/monitor/cache\')', null, '0', '2018-01-23 10:56:11', null, '0');
 INSERT INTO `sys_menu` VALUES ('13', 'ELK状态', null, null, null, null, '8', null, '_import(\'admin/monitor/elk\')', null, '0', '2018-01-23 10:55:47', '2018-01-25 11:11:40', '0');
 INSERT INTO `sys_menu` VALUES ('14', '接口文档', null, null, null, null, '8', null, '_import(\'admin/monitor/swagger\')', null, '0', '2018-01-23 10:56:43', '2018-01-25 11:11:45', '0');
-INSERT INTO `sys_menu` VALUES ('21', '用户查看', '', null, '/user/api/user/**', 'GET', '2', null, null, null, '1', '2017-11-07 20:58:05', '2018-02-04 14:28:49', '0');
-INSERT INTO `sys_menu` VALUES ('22', '用户新增', 'sys_user_add', null, '/user/api/user/*', 'POST', '2', null, null, null, '1', '2017-11-08 09:52:09', '2017-12-04 16:31:10', '0');
-INSERT INTO `sys_menu` VALUES ('23', '用户修改', 'sys_user_upd', null, '/user/api/user/**', 'PUT', '2', null, null, null, '1', '2017-11-08 09:52:48', '2018-01-17 17:40:01', '0');
-INSERT INTO `sys_menu` VALUES ('24', '用户删除', 'sys_user_del', null, '/user/api/user/*', 'DELETE', '2', null, null, null, '1', '2017-11-08 09:54:01', '2017-12-04 16:31:18', '0');
-INSERT INTO `sys_menu` VALUES ('31', '菜单查看', null, null, '/user/api/menu/**', 'GET', '3', null, null, null, '1', '2017-11-08 09:57:56', '2017-11-14 17:29:17', '0');
-INSERT INTO `sys_menu` VALUES ('32', '菜单新增', 'sys_menu_add', null, '/user/api/menu/*', 'POST', '3', null, null, null, '1', '2017-11-08 10:15:53', '2018-01-20 14:37:50', '0');
-INSERT INTO `sys_menu` VALUES ('33', '菜单修改', 'sys_menu_edit', null, '/user/api/menu/*', 'PUT', '3', null, null, null, '1', '2017-11-08 10:16:23', '2018-01-20 14:37:56', '0');
-INSERT INTO `sys_menu` VALUES ('34', '菜单删除', 'sys_menu_del', null, '/user/api/menu/*', 'DELETE', '3', null, null, null, '1', '2017-11-08 10:16:43', '2018-01-20 14:38:03', '0');
-INSERT INTO `sys_menu` VALUES ('41', '角色查看', null, null, '/user/api/role/**', 'GET', '4', null, null, null, '1', '2017-11-08 10:14:01', '2018-02-04 13:55:06', '0');
-INSERT INTO `sys_menu` VALUES ('42', '角色新增', null, null, '/user/api/role/*', 'POST', '4', null, null, null, '1', '2017-11-08 10:14:18', '2017-11-14 14:10:03', '0');
-INSERT INTO `sys_menu` VALUES ('43', '角色修改', null, null, '/user/api/role/*', 'PUT', '4', null, null, null, '1', '2017-11-08 10:14:41', '2017-11-08 20:35:33', '0');
-INSERT INTO `sys_menu` VALUES ('44', '角色删除', null, null, '/user/api/role/*', 'DELETE', '4', null, null, null, '1', '2017-11-08 10:14:59', '2017-11-08 20:35:35', '0');
-INSERT INTO `sys_menu` VALUES ('51', '日志查看', null, null, '/user/api/log/**', 'GET', '5', null, null, null, '1', '2017-11-20 14:07:25', '2018-02-04 14:28:53', '0');
+INSERT INTO `sys_menu` VALUES ('21', '用户查看', '', null, '/admin/admin/**', 'GET', '2', null, null, null, '1', '2017-11-07 20:58:05', '2018-02-04 14:28:49', '0');
+INSERT INTO `sys_menu` VALUES ('22', '用户新增', 'sys_user_add', null, '/admin/admin/*', 'POST', '2', null, null, null, '1', '2017-11-08 09:52:09', '2017-12-04 16:31:10', '0');
+INSERT INTO `sys_menu` VALUES ('23', '用户修改', 'sys_user_upd', null, '/admin/admin/**', 'PUT', '2', null, null, null, '1', '2017-11-08 09:52:48', '2018-01-17 17:40:01', '0');
+INSERT INTO `sys_menu` VALUES ('24', '用户删除', 'sys_user_del', null, '/admin/admin/*', 'DELETE', '2', null, null, null, '1', '2017-11-08 09:54:01', '2017-12-04 16:31:18', '0');
+INSERT INTO `sys_menu` VALUES ('31', '菜单查看', null, null, '/admin/menu/**', 'GET', '3', null, null, null, '1', '2017-11-08 09:57:56', '2017-11-14 17:29:17', '0');
+INSERT INTO `sys_menu` VALUES ('32', '菜单新增', 'sys_menu_add', null, '/admin/menu/*', 'POST', '3', null, null, null, '1', '2017-11-08 10:15:53', '2018-01-20 14:37:50', '0');
+INSERT INTO `sys_menu` VALUES ('33', '菜单修改', 'sys_menu_edit', null, '/admin/menu/*', 'PUT', '3', null, null, null, '1', '2017-11-08 10:16:23', '2018-01-20 14:37:56', '0');
+INSERT INTO `sys_menu` VALUES ('34', '菜单删除', 'sys_menu_del', null, '/admin/menu/*', 'DELETE', '3', null, null, null, '1', '2017-11-08 10:16:43', '2018-01-20 14:38:03', '0');
+INSERT INTO `sys_menu` VALUES ('41', '角色查看', null, null, '/admin/role/**', 'GET', '4', null, null, null, '1', '2017-11-08 10:14:01', '2018-02-04 13:55:06', '0');
+INSERT INTO `sys_menu` VALUES ('42', '角色新增', null, null, '/admin/role/*', 'POST', '4', null, null, null, '1', '2017-11-08 10:14:18', '2017-11-14 14:10:03', '0');
+INSERT INTO `sys_menu` VALUES ('43', '角色修改', null, null, '/admin/role/*', 'PUT', '4', null, null, null, '1', '2017-11-08 10:14:41', '2017-11-08 20:35:33', '0');
+INSERT INTO `sys_menu` VALUES ('44', '角色删除', null, null, '/admin/role/*', 'DELETE', '4', null, null, null, '1', '2017-11-08 10:14:59', '2017-11-08 20:35:35', '0');
+INSERT INTO `sys_menu` VALUES ('51', '日志查看', null, null, '/admin/log/**', 'GET', '5', null, null, null, '1', '2017-11-20 14:07:25', '2018-02-04 14:28:53', '0');
 INSERT INTO `sys_menu` VALUES ('52', '日志删除', 'sys_log_del', null, '/admin/log/*', 'DELETE', '5', null, null, null, '1', '2017-11-20 20:37:37', '2017-11-28 17:36:52', '0');
 INSERT INTO `sys_menu` VALUES ('61', '字典查看', null, null, '/admin/dict/**', 'GET', '6', null, null, null, '1', '2017-11-19 22:04:24', '2017-11-29 11:31:24', '0');
 INSERT INTO `sys_menu` VALUES ('62', '字典删除', 'sys_dict_del', null, '/admin/dict/**', 'DELETE', '6', null, null, null, '1', '2017-11-29 11:30:11', '2018-01-07 15:40:51', '0');

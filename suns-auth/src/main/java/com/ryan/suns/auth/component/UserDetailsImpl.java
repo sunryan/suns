@@ -1,8 +1,8 @@
 package com.ryan.suns.auth.component;
 
 import com.ryan.suns.common.constant.SecurityConstants;
-import com.ryan.suns.common.model.user.SysRole;
-import com.ryan.suns.common.model.user.SysUser;
+import com.ryan.suns.common.model.admin.SysRole;
+import com.ryan.suns.common.model.admin.SysUser;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

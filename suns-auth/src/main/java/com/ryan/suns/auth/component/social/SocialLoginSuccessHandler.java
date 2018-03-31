@@ -38,7 +38,7 @@ public class SocialLoginSuccessHandler implements AuthenticationSuccessHandler {
     private AuthorizationServerTokenServices defaultAuthorizationServerTokenServices;
 
     /**
-     * Called when a user has been successfully authenticated.
+     * Called when a admin has been successfully authenticated.
      * 调用spring security oauth API 生成 oAuth2AccessToken
      *
      * @param request        the request which caused the successful authentication

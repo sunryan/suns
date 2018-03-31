@@ -1,20 +1,19 @@
 package com.ryan.suns.auth.controller;
 
-import cn.hutool.http.HttpStatus;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ryan.suns.common.constant.CommonConstant;
+import com.ryan.suns.api.feign.admin.UserClient;
 import com.ryan.suns.common.constant.SecurityConstants;
 import com.ryan.suns.common.util.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -27,21 +26,16 @@ public class UserController {
     @Autowired
     private RedisConnectionFactory redisConnectionFactory;
     @Autowired
-    private ObjectMapper objectMapper;
+    private UserClient userClient;
     
     /**
      * 未登录json提示
-     * @param response
      * @return
      * @throws IOException
      */
     @RequestMapping("/authentication/require")
-    public void require(HttpServletResponse response) throws IOException {
-        
-        response.setCharacterEncoding(CommonConstant.UTF8);
-        response.setContentType(CommonConstant.CONTENT_TYPE);
-        response.setStatus(HttpStatus.HTTP_UNAUTHORIZED);
-        response.getWriter().write(objectMapper.writeValueAsString("未登录"));
+    public ResponseEntity require() {
+        return new ResponseEntity<R<String>>(new R().fail("请登陆"), HttpStatus.UNAUTHORIZED);
     }
 
 

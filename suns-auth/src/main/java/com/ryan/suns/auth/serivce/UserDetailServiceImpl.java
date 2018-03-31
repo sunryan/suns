@@ -1,11 +1,13 @@
 package com.ryan.suns.auth.serivce;
 
-import com.ryan.suns.api.feign.user.UserClient;
+import com.ryan.suns.api.feign.admin.UserClient;
 import com.ryan.suns.auth.component.UserDetailsImpl;
 import com.ryan.suns.common.constant.SecurityConstants;
-import com.ryan.suns.common.model.user.SysRole;
-import com.ryan.suns.common.model.user.SysUser;
+import com.ryan.suns.common.model.admin.SysRole;
+import com.ryan.suns.common.model.admin.SysUser;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -33,15 +35,18 @@ public class UserDetailServiceImpl implements UserDetailsService,SocialUserDetai
     @Override
     public UserDetailsImpl loadUserByUsername(String username)  {
     
+        if(StringUtils.isEmpty(username)){
+            throw new BadCredentialsException("用户不允许为空");
+        }
         SysUser user = userClient.findUserByUsername(username);
         if(user == null){
-            throw new UsernameNotFoundException("用户不存在");
+            throw new BadCredentialsException("用户不存在");
         }
         return new UserDetailsImpl(user);
     }
 
     /**
-     * @param userId the user ID used to lookup the user details
+     * @param userId the admin ID used to lookup the admin details
      * @return the SocialUserDetails requested
      * @see UserDetailsService#loadUserByUsername(String)
      */

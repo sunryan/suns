@@ -1,8 +1,8 @@
 package com.ryan.suns.gateway.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
-import com.ryan.suns.api.feign.user.MenuClient;
-import com.ryan.suns.common.model.user.SysMenu;
+import com.ryan.suns.api.feign.admin.MenuClient;
+import com.ryan.suns.common.model.admin.SysMenu;
 import com.ryan.suns.gateway.service.PermissionService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,9 @@
 package com.ryan.suns.auth.component.mobile;
 
-import com.ryan.suns.api.feign.user.UserClient;
+import com.ryan.suns.api.feign.admin.UserClient;
 import com.ryan.suns.auth.component.UserDetailsImpl;
 import com.ryan.suns.auth.component.mobile.exception.MobileNotFundException;
-import com.ryan.suns.common.model.user.SysUser;
+import com.ryan.suns.common.model.admin.SysUser;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
