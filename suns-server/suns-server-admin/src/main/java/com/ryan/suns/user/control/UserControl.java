@@ -4,7 +4,11 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.ryan.suns.api.feign.admin.UserClient;
 import com.ryan.suns.api.user.UserService;
 import com.ryan.suns.common.model.admin.SysUser;
+import com.ryan.suns.common.util.R;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,6 +45,16 @@ public class UserControl implements UserClient {
     @RequestMapping("/queryPage")
     public Page<SysUser> queryPage(Page<SysUser> page, SysUser sysUser) {
         return userService.queryPage(page, sysUser);
+    }
+    
+    
+    @PostMapping("/insertOrUpdateUser")
+    public ResponseEntity insertOrUpdateUser(SysUser sysUser){
+        if(userService.insertOrUpdate(sysUser)){
+            return new ResponseEntity<R<String>>(new R(), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<R<String>>(new R().fail("请登陆"), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     
 }

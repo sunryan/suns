@@ -3,12 +3,17 @@ package com.ryan.suns.auth.component;
 import cn.hutool.core.map.MapUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ryan.suns.api.feign.admin.MenuClient;
 import com.ryan.suns.common.constant.CommonConstant;
+import com.ryan.suns.common.constant.RedisConstants;
+import com.ryan.suns.common.model.admin.SysMenu;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.common.exceptions.UnapprovedClientAuthenticationException;
@@ -24,6 +29,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -41,6 +49,10 @@ public abstract class SunsAuthenticationSuccessHandler implements Authentication
     private ObjectMapper objectMapper;
     @Autowired
     private ClientDetailsService clientDetailsService;
+    @Autowired
+    private MenuClient menuClient;
+    @Autowired
+    private RedisTemplate redisTemplate;
     
     @Autowired
     private AuthorizationServerTokenServices defaultAuthorizationServerTokenServices;
@@ -81,6 +93,9 @@ public abstract class SunsAuthenticationSuccessHandler implements Authentication
             OAuth2Authentication oAuth2Authentication = new OAuth2Authentication(oAuth2Request, authentication);
             OAuth2AccessToken oAuth2AccessToken = defaultAuthorizationServerTokenServices.createAccessToken(oAuth2Authentication);
             logger.info("获取token 成功：{}", oAuth2AccessToken.getValue());
+    
+            // 保存用户权限
+            saveUserPermission(authentication);
             
             response.setCharacterEncoding(CommonConstant.UTF8);
             response.setContentType(CommonConstant.CONTENT_TYPE);
@@ -90,6 +105,18 @@ public abstract class SunsAuthenticationSuccessHandler implements Authentication
             throw new BadCredentialsException(
                     "Failed to decode basic authentication token");
         }
+    }
+    
+    protected  void saveUserPermission(Authentication authentication){
+       
+        List<SimpleGrantedAuthority> grantedAuthorityList = (List<SimpleGrantedAuthority>) authentication.getAuthorities();
+        Set<SysMenu> urls = new HashSet<>();
+        for (SimpleGrantedAuthority authority : grantedAuthorityList) {
+            urls.addAll(menuClient.findMenuByRoleCode(authority.getAuthority()));
+        }
+    
+        redisTemplate.opsForHash().put(RedisConstants.USER_PERMISSION_KEY ,authentication.getName() , urls);
+        logger.info("保存用户权限");
     }
     
     protected String getGrantType(){
