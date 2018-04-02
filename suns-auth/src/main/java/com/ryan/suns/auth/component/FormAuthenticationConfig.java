@@ -22,9 +22,9 @@ public class FormAuthenticationConfig {
     public void configure(HttpSecurity http) throws Exception {
         http.formLogin()
                 //没有登录时跳转接口
-                .loginPage("/authentication/require")
+                .loginPage("/form/require")
                 //登录接口
-                .loginProcessingUrl("/authentication/login")
+                .loginProcessingUrl("/form/login")
                 .successHandler(mobileLoginSuccessHandler)
                 .failureHandler(authenctiationFailureHandler);
     }

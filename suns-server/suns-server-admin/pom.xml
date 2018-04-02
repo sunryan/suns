@@ -40,11 +40,6 @@
             <version>${mysql.version}</version>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>tk.mybatis</groupId>
-            <artifactId>mapper-spring-boot-starter</artifactId>
-            <version>${mybatisplus.spring.boot.version}</version>
-        </dependency>
 
         <!-- mybatis-plus begin -->
         <dependency>

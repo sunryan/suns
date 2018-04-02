@@ -1,4 +1,4 @@
-package com.ryan.suns.user.handler;
+package com.ryan.suns.admin.handler;
 
 import com.baomidou.mybatisplus.mapper.MetaObjectHandler;
 import lombok.extern.slf4j.Slf4j;

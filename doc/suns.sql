@@ -78,10 +78,10 @@ INSERT INTO `sys_menu` VALUES ('11', 'pinpoint监控', null, null, null, null, '
 INSERT INTO `sys_menu` VALUES ('12', '缓存状态', null, null, null, null, '8', null, '_import(\'admin/monitor/cache\')', null, '0', '2018-01-23 10:56:11', null, '0');
 INSERT INTO `sys_menu` VALUES ('13', 'ELK状态', null, null, null, null, '8', null, '_import(\'admin/monitor/elk\')', null, '0', '2018-01-23 10:55:47', '2018-01-25 11:11:40', '0');
 INSERT INTO `sys_menu` VALUES ('14', '接口文档', null, null, null, null, '8', null, '_import(\'admin/monitor/swagger\')', null, '0', '2018-01-23 10:56:43', '2018-01-25 11:11:45', '0');
-INSERT INTO `sys_menu` VALUES ('21', '用户查看', '', null, '/admin/admin/**', 'GET', '2', null, null, null, '1', '2017-11-07 20:58:05', '2018-02-04 14:28:49', '0');
-INSERT INTO `sys_menu` VALUES ('22', '用户新增', 'sys_user_add', null, '/admin/admin/*', 'POST', '2', null, null, null, '1', '2017-11-08 09:52:09', '2017-12-04 16:31:10', '0');
-INSERT INTO `sys_menu` VALUES ('23', '用户修改', 'sys_user_upd', null, '/admin/admin/**', 'PUT', '2', null, null, null, '1', '2017-11-08 09:52:48', '2018-01-17 17:40:01', '0');
-INSERT INTO `sys_menu` VALUES ('24', '用户删除', 'sys_user_del', null, '/admin/admin/*', 'DELETE', '2', null, null, null, '1', '2017-11-08 09:54:01', '2017-12-04 16:31:18', '0');
+INSERT INTO `sys_menu` VALUES ('21', '用户查看', '', null, '/admin/user/**', 'GET', '2', null, null, null, '1', '2017-11-07 20:58:05', '2018-02-04 14:28:49', '0');
+INSERT INTO `sys_menu` VALUES ('22', '用户新增', 'sys_user_add', null, '/admin/user/*', 'POST', '2', null, null, null, '1', '2017-11-08 09:52:09', '2017-12-04 16:31:10', '0');
+INSERT INTO `sys_menu` VALUES ('23', '用户修改', 'sys_user_upd', null, '/admin/user/**', 'PUT', '2', null, null, null, '1', '2017-11-08 09:52:48', '2018-01-17 17:40:01', '0');
+INSERT INTO `sys_menu` VALUES ('24', '用户删除', 'sys_user_del', null, '/admin/user/*', 'DELETE', '2', null, null, null, '1', '2017-11-08 09:54:01', '2017-12-04 16:31:18', '0');
 INSERT INTO `sys_menu` VALUES ('31', '菜单查看', null, null, '/admin/menu/**', 'GET', '3', null, null, null, '1', '2017-11-08 09:57:56', '2017-11-14 17:29:17', '0');
 INSERT INTO `sys_menu` VALUES ('32', '菜单新增', 'sys_menu_add', null, '/admin/menu/*', 'POST', '3', null, null, null, '1', '2017-11-08 10:15:53', '2018-01-20 14:37:50', '0');
 INSERT INTO `sys_menu` VALUES ('33', '菜单修改', 'sys_menu_edit', null, '/admin/menu/*', 'PUT', '3', null, null, null, '1', '2017-11-08 10:16:23', '2018-01-20 14:37:56', '0');

@@ -1,4 +1,4 @@
-package com.ryan.suns.user.mapper;
+package com.ryan.suns.admin.mapper;
 
 import com.ryan.suns.common.model.admin.SysMenu;
 import org.apache.ibatis.annotations.Param;

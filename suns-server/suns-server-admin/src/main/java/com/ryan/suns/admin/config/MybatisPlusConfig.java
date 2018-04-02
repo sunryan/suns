@@ -1,10 +1,9 @@
-package com.ryan.suns.user.config;
+package com.ryan.suns.admin.config;
 
 import com.baomidou.mybatisplus.mapper.ISqlInjector;
 import com.baomidou.mybatisplus.mapper.LogicSqlInjector;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.plugins.PerformanceInterceptor;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
  * @date 2018/3/27.
  */
 @Configuration
-@MapperScan("com.ryan.suns.admin.mapper*")
 public class MybatisPlusConfig {
     
     /**

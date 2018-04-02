@@ -1,4 +1,4 @@
-package com.ryan.suns.user.control;
+package com.ryan.suns.admin.control;
 
 import com.ryan.suns.api.feign.admin.MenuClient;
 import com.ryan.suns.api.user.MenuService;

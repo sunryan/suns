@@ -1,4 +1,4 @@
-package com.ryan.suns.user.control;
+package com.ryan.suns.admin.control;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.ryan.suns.api.feign.admin.UserClient;
@@ -8,6 +8,7 @@ import com.ryan.suns.common.util.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,9 @@ public class UserControl implements UserClient {
     
     @Autowired
     private UserService userService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    
     
     @Override
     public SysUser findUserByUsername(String username) {
@@ -50,6 +54,7 @@ public class UserControl implements UserClient {
     
     @PostMapping("/insertOrUpdateUser")
     public ResponseEntity insertOrUpdateUser(SysUser sysUser){
+        sysUser.setPassword(passwordEncoder.encode(sysUser.getPassword()));
         if(userService.insertOrUpdate(sysUser)){
             return new ResponseEntity<R<String>>(new R(), HttpStatus.OK);
         }else{
