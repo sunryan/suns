@@ -9,6 +9,10 @@
       <result column="password" property="password"/>
       <result column="avatar" property="avatar"/>
       <result column="mobile" property="mobile"/>
+      <result column="mail" property="mail"/>
+      <result column="sex" property="sex"/>
+      <result column="delFlag" property="delFlag"/>
+      <result column="introduction" property="introduction"/>
       <collection property="roleList" ofType="com.ryan.suns.common.model.admin.SysRole">
         <id column="roleId" property="roleId" />
         <result column="roleName" property="roleName" />
@@ -37,7 +41,8 @@
     </select>
 
     <select id="selectByUserId" resultMap="userResultMap">
-        SELECT u.userId,u.username,u.password,u.avatar,r.roleId,r.roleName,r.roleCode FROM sys_user u
+        SELECT u.userId,u.username,u.password,u.avatar,u.mobile,u.mail,u.sex,u.introduction,
+        r.roleId,r.roleName,r.roleCode FROM sys_user u
         LEFT JOIN sys_user_role ur ON ur.userId = u.userId
         LEFT JOIN sys_role r ON r.roleId = ur.roleId
         where u.delFlag = 0 and r.delFlag = 0 and u.userId = #{userId}
@@ -52,7 +57,7 @@
 
 
     <select id="queryPage" resultMap="userResultMap">
-        SELECT u.userId,u.username,u.password,u.avatar,u.mobile,r.roleName FROM sys_user u
+        SELECT u.userId,u.username,u.password,u.avatar,u.mobile,u.mail,u.sex,r.roleName FROM sys_user u
         LEFT JOIN sys_user_role ur ON ur.userId = u.userId
         LEFT JOIN sys_role r ON r.roleId = ur.roleId
         <include refid="query_page_where"/>

@@ -112,7 +112,7 @@ CREATE TABLE `sys_role` (
   `delFlag` tinyint(1) DEFAULT '0' COMMENT '删除标识（0-正常,1-删除）',
   PRIMARY KEY (`roleId`),
   UNIQUE KEY `role_idx_role_code` (`roleCode`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='用户角色表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户角色表';
 
 -- ----------------------------
 -- Records of sys_role
@@ -188,7 +188,7 @@ CREATE TABLE `sys_user` (
   PRIMARY KEY (`userId`),
   UNIQUE KEY `user_idx_username` (`username`) USING BTREE,
   UNIQUE KEY `user_idx_mobile` (`mobile`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户表';
 
 -- ----------------------------
 -- Records of sys_user

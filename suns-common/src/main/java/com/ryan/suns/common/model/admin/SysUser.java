@@ -3,6 +3,8 @@ package com.ryan.suns.common.model.admin;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.ryan.suns.common.model.BaseEntity;
+import com.ryan.suns.common.model.enums.DeleteEnum;
+import com.ryan.suns.common.model.enums.SexEnum;
 import lombok.Data;
 import org.springframework.util.CollectionUtils;
 
@@ -41,14 +43,29 @@ public class SysUser extends BaseEntity<SysRole> implements Serializable {
     private String salt;
     
     /**
+     * 平台类型
+     */
+    private Integer platformType;
+    
+    /**
+     * 性别 1：男 0：女
+     */
+    private SexEnum sex;
+    
+    /**
      * 手机号
      */
     private String mobile;
     
     /**
+     * 邮箱
+     */
+    private String mail;
+    
+    /**
      * 0-正常，1-删除
      */
-    private String delFlag;
+    private DeleteEnum delFlag;
     
     /**
      * 简介

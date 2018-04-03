@@ -1,12 +1,12 @@
 package com.ryan.suns.auth.component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ryan.suns.common.ResponseData;
-import com.ryan.suns.common.ResultCode;
 import com.ryan.suns.common.constant.CommonConstant;
+import com.ryan.suns.common.util.R;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
@@ -35,7 +35,8 @@ public class SunsAuthenctiationFailureHandler extends SimpleUrlAuthenticationFai
         
         response.setCharacterEncoding(CommonConstant.UTF8);
         response.setContentType(CommonConstant.CONTENT_TYPE);
-        response.getWriter().write(objectMapper.writeValueAsString(new ResponseData(ResultCode.FAIL)));
+        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+        response.getWriter().write(objectMapper.writeValueAsString(new R().fail(exception.getMessage())));
         
     }
 }
