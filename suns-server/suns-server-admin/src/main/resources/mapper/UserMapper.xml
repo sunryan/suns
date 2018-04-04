@@ -4,7 +4,7 @@
 
     <!-- SysUser结果集 -->
     <resultMap id="userResultMap" type="com.ryan.suns.common.model.admin.SysUser">
-      <id column="userId" property="userId"/>
+      <id column="id" property="id"/>
       <result column="username" property="username"/>
       <result column="password" property="password"/>
       <result column="avatar" property="avatar"/>
@@ -14,7 +14,7 @@
       <result column="delFlag" property="delFlag"/>
       <result column="introduction" property="introduction"/>
       <collection property="roleList" ofType="com.ryan.suns.common.model.admin.SysRole">
-        <id column="roleId" property="roleId" />
+        <id column="roleId" property="id" />
         <result column="roleName" property="roleName" />
         <result column="roleCode" property="roleCode" />
       </collection>
@@ -34,32 +34,32 @@
 
 
     <select id="selectByUsername" resultMap="userResultMap">
-        SELECT u.userId,u.username,u.password,u.avatar,r.roleId,r.roleName,r.roleCode FROM sys_user u
-        LEFT JOIN sys_user_role ur ON ur.userId = u.userId
-        LEFT JOIN sys_role r ON r.roleId = ur.roleId
+        SELECT u.id,u.username,u.password,u.avatar,r.id as roleId,r.roleName,r.roleCode FROM sys_user u
+        LEFT JOIN sys_user_role ur ON ur.userId = u.id
+        LEFT JOIN sys_role r ON r.id = ur.roleId
         where u.delFlag = 0 and r.delFlag = 0 and u.userName = #{username}
     </select>
 
     <select id="selectByUserId" resultMap="userResultMap">
-        SELECT u.userId,u.username,u.password,u.avatar,u.mobile,u.mail,u.sex,u.introduction,
-        r.roleId,r.roleName,r.roleCode FROM sys_user u
-        LEFT JOIN sys_user_role ur ON ur.userId = u.userId
-        LEFT JOIN sys_role r ON r.roleId = ur.roleId
-        where u.delFlag = 0 and r.delFlag = 0 and u.userId = #{userId}
+        SELECT u.id,u.username,u.password,u.avatar,u.mobile,u.mail,u.sex,u.introduction,
+        r.id as roleId,r.roleName,r.roleCode FROM sys_user u
+        LEFT JOIN sys_user_role ur ON ur.userId = u.id
+        LEFT JOIN sys_role r ON r.id = ur.roleId
+        where u.delFlag = 0 and r.delFlag = 0 and u.id = #{userId}
     </select>
 
     <select id="findUserByMobile" resultMap="userResultMap">
-        SELECT u.userId,u.username,u.password,u.avatar,r.roleId,r.roleName,r.roleCode FROM sys_user u
-        LEFT JOIN sys_user_role ur ON ur.userId = u.userId
-        LEFT JOIN sys_role r ON r.roleId = ur.roleId
+        SELECT u.id,u.username,u.password,u.avatar,r.id as roleId,r.roleName,r.roleCode FROM sys_user u
+         LEFT JOIN sys_user_role ur ON ur.userId = u.id
+        LEFT JOIN sys_role r ON r.id = ur.roleId
         where u.delFlag = 0 and r.delFlag = 0 and u.mobile = #{mobile}
     </select>
 
 
     <select id="queryPage" resultMap="userResultMap">
-        SELECT u.userId,u.username,u.password,u.avatar,u.mobile,u.mail,u.sex,r.roleName FROM sys_user u
-        LEFT JOIN sys_user_role ur ON ur.userId = u.userId
-        LEFT JOIN sys_role r ON r.roleId = ur.roleId
+        SELECT u.id,u.username,u.password,u.avatar,u.mobile,u.mail,u.sex,r.roleName FROM sys_user u
+        LEFT JOIN sys_user_role ur ON ur.userId = u.id
+        LEFT JOIN sys_role r ON r.id = ur.roleId
         <include refid="query_page_where"/>
     </select>
 

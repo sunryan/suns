@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -12,6 +13,12 @@ import java.util.Date;
  */
 @Data
 public abstract class BaseEntity<T extends Model> extends Model<T> {
+    
+    
+    /**
+     * 通用主键
+     */
+    private String id;
     
     
     /**
@@ -24,5 +31,10 @@ public abstract class BaseEntity<T extends Model> extends Model<T> {
      */
     @TableField(update = "now()")
     private Date updateTime;
+    
+    @Override
+    protected Serializable pkVal() {
+        return id;
+    }
     
 }

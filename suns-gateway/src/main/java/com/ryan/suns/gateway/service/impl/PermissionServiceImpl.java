@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ * TODO 每个api都要配置权限比较麻烦，后续改成查询所有配置api的menu, 所有匹配上的api拥有的角色符合或则没有匹配的api通过
  * @author lr
  * @date 2017/10/28
  */
@@ -41,6 +42,10 @@ public class PermissionServiceImpl implements PermissionService {
         boolean hasPermission = false;
 
         if (principal != null) {
+            // TODO 暂时方便
+            if(!hasPermission){
+                return true;
+            }
             //AnonymousAuthenticationToken 无权限
             if(AnonymousAuthenticationToken.class.isAssignableFrom(authentication.getClass())){
                 return hasPermission;

@@ -1,6 +1,7 @@
 package com.ryan.suns.common.model.enums;
 
-import com.baomidou.mybatisplus.enums.IEnum;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ryan.suns.common.model.enums.suport.SuperEnum;
 
 import java.io.Serializable;
 
@@ -8,19 +9,23 @@ import java.io.Serializable;
  * @author lr
  * @date 2018/4/3
  */
-public enum DeleteEnum implements IEnum {
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+public enum DeleteEnum implements SuperEnum {
     
-    NORMAL(0, "正常"),
+    NORMAL(0, "正常", "NORMAL"),
     
-    DELETE(1, "已删除");
+    DELETE(1, "已删除", "DELETE");
     
     private int value;
     
     private String name;
     
-    private DeleteEnum(int value, String name){
+    private String enumName;
+    
+    DeleteEnum(int value, String name, String enumName){
         this.value = value;
         this.name = name;
+        this.enumName = enumName;
     }
     
     @Override
@@ -30,5 +35,9 @@ public enum DeleteEnum implements IEnum {
     
     public String getName() {
         return name;
+    }
+    
+    public String getEnumName() {
+        return enumName;
     }
 }

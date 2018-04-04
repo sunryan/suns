@@ -1,7 +1,5 @@
 package com.ryan.suns.admin.config;
 
-import com.baomidou.mybatisplus.mapper.ISqlInjector;
-import com.baomidou.mybatisplus.mapper.LogicSqlInjector;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.plugins.PerformanceInterceptor;
 import org.springframework.context.annotation.Bean;
@@ -29,18 +27,8 @@ public class MybatisPlusConfig {
      */
     @Bean
     public PaginationInterceptor paginationInterceptor() {
-        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
-        paginationInterceptor.setLocalPage(true);// 开启 PageHelper 的支持
-        return paginationInterceptor;
+        return new PaginationInterceptor();
     }
     
-    
-    /**
-     * 注入sql注入器
-     */
-    @Bean
-    public ISqlInjector sqlInjector(){
-        return new LogicSqlInjector();
-    }
 
 }

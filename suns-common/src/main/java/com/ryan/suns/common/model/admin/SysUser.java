@@ -23,11 +23,6 @@ public class SysUser extends BaseEntity<SysRole> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户ID
-     */
-    private Integer userId;
-    
-    /**
      * 用户名
      */
     private String username;
@@ -62,11 +57,11 @@ public class SysUser extends BaseEntity<SysRole> implements Serializable {
      */
     private String mail;
     
+    
     /**
      * 0-正常，1-删除
      */
     private DeleteEnum delFlag;
-    
     /**
      * 简介
      */
@@ -94,10 +89,6 @@ public class SysUser extends BaseEntity<SysRole> implements Serializable {
     @TableField(exist = false)
     private List<SysRole> roleList = new ArrayList<>();
     
-    @Override
-    protected Serializable pkVal() {
-        return userId;
-    }
     
     public List<String> getRoles(){
         List<String> list = new ArrayList<>();

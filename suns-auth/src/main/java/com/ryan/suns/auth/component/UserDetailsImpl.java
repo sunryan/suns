@@ -38,8 +38,9 @@ public class UserDetailsImpl implements UserDetails {
             for (SysRole role : roleList) {
                 authorityList.add(new SimpleGrantedAuthority(role.getRoleCode()));
             }
+        }else{
+            authorityList.add(new SimpleGrantedAuthority(SecurityConstants.BASE_ROLE));
         }
-        authorityList.add(new SimpleGrantedAuthority(SecurityConstants.BASE_ROLE));
         return authorityList;
     }
 

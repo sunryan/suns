@@ -1,7 +1,7 @@
 package com.ryan.suns.auth.component;
 
 import cn.hutool.core.map.MapUtil;
-import com.alibaba.fastjson.JSONObject;
+import cn.hutool.json.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ryan.suns.api.feign.admin.MenuClient;
 import com.ryan.suns.common.constant.CommonConstant;

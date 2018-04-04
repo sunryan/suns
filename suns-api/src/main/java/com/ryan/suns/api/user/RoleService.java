@@ -9,5 +9,6 @@ import com.ryan.suns.common.model.admin.SysRole;
  * @date 2018/1/23
  */
 public interface RoleService  extends IService<SysRole> {
-
+    
+    boolean updateUserRoles(String userId, String[] roleIds);
 }

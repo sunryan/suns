@@ -4,8 +4,6 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import com.ryan.suns.common.model.BaseEntity;
 import lombok.Data;
 
-import java.io.Serializable;
-
 /**
  * @author lr
  * @date 2018/3/26
@@ -15,11 +13,6 @@ import java.io.Serializable;
 public class SysMenu extends BaseEntity<SysMenu>{
     
     private static final long serialVersionUID = 1L;
-    
-    /**
-     * 菜单ID
-     */
-    private Integer menuId;
     
     /**
      * 菜单名称
@@ -71,8 +64,4 @@ public class SysMenu extends BaseEntity<SysMenu>{
      */
     private String delFlag;
     
-    @Override
-    protected Serializable pkVal() {
-        return menuId;
-    }
 }

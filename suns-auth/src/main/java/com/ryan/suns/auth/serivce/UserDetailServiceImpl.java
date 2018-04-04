@@ -16,6 +16,7 @@ import org.springframework.social.security.SocialUser;
 import org.springframework.social.security.SocialUserDetails;
 import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -57,10 +58,13 @@ public class UserDetailServiceImpl implements UserDetailsService,SocialUserDetai
             throw new UsernameNotFoundException("用户未绑定");
         }
         List<GrantedAuthority> authorityList = new ArrayList<>();
-        for (SysRole role : user.getRoleList()) {
-            authorityList.add(new SimpleGrantedAuthority(role.getRoleCode()));
+        if(!CollectionUtils.isEmpty(user.getRoleList())){
+            for (SysRole role : user.getRoleList()) {
+                authorityList.add(new SimpleGrantedAuthority(role.getRoleCode()));
+            }
+        }else{
+            authorityList.add(new SimpleGrantedAuthority(SecurityConstants.BASE_ROLE));
         }
-        authorityList.add(new SimpleGrantedAuthority(SecurityConstants.BASE_ROLE));
         return new SocialUser(user.getUsername(), user.getPassword(), authorityList );
     }
 }

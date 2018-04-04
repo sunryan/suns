@@ -12,4 +12,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, SysRole> implements RoleService {
+    
+    @Override
+    public boolean updateUserRoles(String userId, String[] roleIds) {
+        baseMapper.delUserRoles(userId);
+        return retBool(baseMapper.saveUserRoles(userId, roleIds));
+    }
 }

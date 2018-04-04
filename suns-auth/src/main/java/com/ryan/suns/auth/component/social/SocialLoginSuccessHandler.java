@@ -1,7 +1,7 @@
 package com.ryan.suns.auth.component.social;
 
 import cn.hutool.core.map.MapUtil;
-import com.alibaba.fastjson.JSONObject;
+import cn.hutool.json.JSONObject;
 import com.ryan.suns.auth.config.AuthServerConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

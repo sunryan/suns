@@ -3,7 +3,8 @@ package com.ryan.suns.api.feign.admin;
 import com.ryan.suns.api.feign.config.FeignConfiguration;
 import com.ryan.suns.common.model.admin.SysUser;
 import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -19,7 +20,7 @@ public interface UserClient {
      * @param username
      * @return
      */
-    @GetMapping("/name/{username}")
+    @RequestMapping(value = "/name/{username}", method = RequestMethod.GET)
     SysUser findUserByUsername(@RequestParam(value = "username") String username);
     
     /**
@@ -27,7 +28,7 @@ public interface UserClient {
      * @param userId
      * @return
      */
-    @GetMapping("/{userId}")
+    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     SysUser findUserByUserId(@RequestParam(value = "userId") String userId);
     
     /**
@@ -35,7 +36,7 @@ public interface UserClient {
      * @param mobile
      * @return
      */
-    @GetMapping("/mobile/{mobile}")
+    @RequestMapping(value = "/mobile/{mobile}", method = RequestMethod.GET)
     SysUser findUserByMobile(@RequestParam(value = "mobile") String mobile);
     
 }

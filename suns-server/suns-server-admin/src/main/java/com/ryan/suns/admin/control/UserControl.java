@@ -2,6 +2,7 @@ package com.ryan.suns.admin.control;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.ryan.suns.api.feign.admin.UserClient;
+import com.ryan.suns.api.user.RoleService;
 import com.ryan.suns.api.user.UserService;
 import com.ryan.suns.common.BaseControl;
 import com.ryan.suns.common.model.admin.SysUser;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +28,8 @@ public class UserControl extends BaseControl implements UserClient {
     
     @Autowired
     private UserService userService;
+    @Autowired
+    private RoleService roleService;
     @Autowired
     private PasswordEncoder passwordEncoder;
     
@@ -66,6 +70,7 @@ public class UserControl extends BaseControl implements UserClient {
         //默认用户名
         sysUser.setPassword(passwordEncoder.encode(sysUser.getUsername()));
         if(userService.insert(sysUser)){
+            roleService.updateUserRoles(sysUser.getId(), roleIds);
             return ok();
         }else{
             return fail();
@@ -80,7 +85,12 @@ public class UserControl extends BaseControl implements UserClient {
     @PutMapping()
     public ResponseEntity updateUser(SysUser sysUser,
                                              @RequestParam(value = "roleIds[]")  String[] roleIds){
+        if(sysUser.getId() == null){
+            return fail("数据不正确");
+        }
+        sysUser.setPassword(passwordEncoder.encode(sysUser.getPassword()));
         if(userService.updateById(sysUser)){
+            roleService.updateUserRoles(sysUser.getId(), roleIds);
             return ok();
         }else{
             return fail();
@@ -90,14 +100,13 @@ public class UserControl extends BaseControl implements UserClient {
     
     /**
      * 删除用户
-     * @param sysUser
+     * @param userId
      * @return
      */
-    @DeleteMapping("/deleteUser")
-    public ResponseEntity deleteUser(SysUser sysUser){
-        if(sysUser.getUserId() == null){
-            return fail("数据不正确");
-        }
+    @DeleteMapping("/{userId}")
+    public ResponseEntity deleteUser(@PathVariable("userId") String userId){
+        SysUser sysUser = new SysUser();
+        sysUser.setId(userId);
         sysUser.setDelFlag(DeleteEnum.DELETE);
         if(userService.updateById(sysUser)){
             return ok();

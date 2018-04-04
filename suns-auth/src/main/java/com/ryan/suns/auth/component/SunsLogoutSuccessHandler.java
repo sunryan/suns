@@ -1,8 +1,8 @@
 package com.ryan.suns.auth.component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ryan.suns.common.ResponseData;
 import com.ryan.suns.common.constant.CommonConstant;
+import com.ryan.suns.common.util.R;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class SunsLogoutSuccessHandler implements LogoutSuccessHandler {
         logger.info("退出成功");
         response.setCharacterEncoding(CommonConstant.UTF8);
         response.setContentType(CommonConstant.CONTENT_TYPE);
-        response.getWriter().write(objectMapper.writeValueAsString(new ResponseData()));
+        response.getWriter().write(objectMapper.writeValueAsString(new R()));
         
     }
 }

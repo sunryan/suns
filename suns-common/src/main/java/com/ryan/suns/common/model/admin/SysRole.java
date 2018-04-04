@@ -3,6 +3,7 @@ package com.ryan.suns.common.model.admin;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.ryan.suns.common.model.BaseEntity;
+import com.ryan.suns.common.model.enums.DeleteEnum;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -19,11 +20,6 @@ public class SysRole extends BaseEntity<SysRole> implements Serializable {
     private static final long serialVersionUID = 1L;
     
     /**
-     * 角色ID
-     */
-    private Integer roleId;
-    
-    /**
      * 角色名称
      */
     private String roleName;
@@ -36,7 +32,7 @@ public class SysRole extends BaseEntity<SysRole> implements Serializable {
     /**
      * 删除标识（0-正常,1-删除）
      */
-    private String delFlag;
+    private DeleteEnum delFlag;
     
     /**
      * 菜单列表
@@ -44,8 +40,4 @@ public class SysRole extends BaseEntity<SysRole> implements Serializable {
     @TableField(exist = false)
     private List<SysMenu> menuList;
     
-    @Override
-    protected Serializable pkVal() {
-        return roleId;
-    }
 }

@@ -3,7 +3,7 @@ spring:
         name: suns-server-admin
 
     datasource:
-        url: jdbc:mysql://qdm162290194.my3w.com:3306/qdm162290194_db?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+        url: jdbc:mysql://qdm162290194.my3w.com:3306/qdm162290194_db?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&tinyInt1isBit=false
         username: qdm162290194
         password: ryan941026
         # 使用druid数据源
