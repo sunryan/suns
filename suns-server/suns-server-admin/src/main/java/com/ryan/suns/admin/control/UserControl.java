@@ -35,17 +35,17 @@ public class UserControl extends BaseControl implements UserClient {
     
     
     @Override
-    public SysUser findUserByUsername(String username) {
+    public SysUser findUserByUsername(@PathVariable("username") String username) {
         return userService.selectByUsername(username);
     }
     
     @Override
-    public SysUser findUserByUserId(String userId) {
+    public SysUser findUserByUserId(@PathVariable("userId") String userId) {
         return userService.selectByUserId(userId);
     }
     
     @Override
-    public SysUser findUserByMobile(String mobile) {
+    public SysUser findUserByMobile(@PathVariable("mobile") String mobile) {
         return userService.findUserByMobile(mobile);
     }
     
@@ -88,7 +88,6 @@ public class UserControl extends BaseControl implements UserClient {
         if(sysUser.getId() == null){
             return fail("数据不正确");
         }
-        sysUser.setPassword(passwordEncoder.encode(sysUser.getPassword()));
         if(userService.updateById(sysUser)){
             roleService.updateUserRoles(sysUser.getId(), roleIds);
             return ok();

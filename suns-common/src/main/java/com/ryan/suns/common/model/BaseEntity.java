@@ -24,7 +24,6 @@ public abstract class BaseEntity<T extends Model> extends Model<T> {
     /**
      * 创建时间
      */
-    
     private Date createTime;
     /**
      * 修改时间
