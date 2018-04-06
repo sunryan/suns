@@ -1,7 +1,11 @@
 package com.ryan.suns.gateway;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ryan.suns.common.model.enums.DeleteEnum;
+import com.ryan.suns.common.model.enums.SexEnum;
+
+import java.io.IOException;
 
 /**
  * @author lr
@@ -9,9 +13,14 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
  */
 public class test {
     
-    public static void main(String[] args) {
-        PasswordEncoder encoder = new StandardPasswordEncoder("suns");
-        System.out.println(encoder.encode("admin"));
-        System.out.println(encoder.matches("admin", "53ad6c38dd1f58b6967602cce83ddf4cf7a74bee53b37fb420bb4b489dee13c7cdeff38ee8a483a8"));
+    public static void main(String[] args) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+    
+        String jsonStr1 = objectMapper.writeValueAsString(DeleteEnum.DELETE);
+        String jsonStr2 = objectMapper.writeValueAsString(SexEnum.WOMAN);
+        System.out.println(jsonStr1);
+        System.out.println(objectMapper.readValue(jsonStr1, DeleteEnum.class));
+        System.out.println(jsonStr2);
+        System.out.println(objectMapper.readValue(jsonStr2, SexEnum.class));
     }
 }

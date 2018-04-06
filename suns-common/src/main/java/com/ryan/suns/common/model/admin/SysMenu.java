@@ -2,6 +2,7 @@ package com.ryan.suns.common.model.admin;
 
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.ryan.suns.common.model.BaseEntity;
+import com.ryan.suns.common.model.enums.DeleteEnum;
 import lombok.Data;
 
 /**
@@ -62,6 +63,6 @@ public class SysMenu extends BaseEntity<SysMenu>{
     /**
      * 0--正常 1--删除
      */
-    private String delFlag;
+    private DeleteEnum delFlag;
     
 }

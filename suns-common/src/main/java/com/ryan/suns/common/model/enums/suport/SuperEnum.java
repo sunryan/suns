@@ -1,38 +1,36 @@
 package com.ryan.suns.common.model.enums.suport;
 
 import com.baomidou.mybatisplus.enums.IEnum;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * @author lr
  * @date 2018/4/4
  */
+@JsonSerialize(using = EnumSerializer.class)
+@JsonDeserialize(using = EnumDeserializer.class)
 public interface SuperEnum extends IEnum {
     
+    /**
+     * 获取value字段解释
+     * @return
+     */
     String getName();
     
-    Map<Class, Map> ENUM_MAP = new HashMap<>();
+    /**
+     * 获取枚举名称
+     * @return
+     */
+    String getEnumName();
     
-    static <E extends Enum & SuperEnum> E getByName(String name, Class<E> clazz) throws NoMatchedEnumException {
-        Map enumMap = ENUM_MAP.get(clazz);
-        
-        if(null == enumMap) {
-            E[] enums = clazz.getEnumConstants();
-            
-            enumMap = new HashMap<String, E>();
-            
-            for(E current : enums) {
-                enumMap.put(current.getName(), current);
-            }
-        }
-        
-        E result =  (E) enumMap.get(name);
-        if(result != null) {
-            return result;
-        } else {
-            throw new NoMatchedEnumException("No element matches " + name);
-        }
-    }
+    /**
+     * 获取枚举className
+     * @return
+     */
+    String getClassName();
+    
+    
+    
+    
 }

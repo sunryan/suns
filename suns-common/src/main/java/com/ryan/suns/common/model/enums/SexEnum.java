@@ -1,6 +1,5 @@
 package com.ryan.suns.common.model.enums;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ryan.suns.common.model.enums.suport.SuperEnum;
 
 import java.io.Serializable;
@@ -9,23 +8,20 @@ import java.io.Serializable;
  * @author lr
  * @date 2018/4/3
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum SexEnum implements SuperEnum {
 
-    MAN(1, "男", "MAN"),
+    MAN(1, "男"),
     
-    WOMAN(0, "女", "WOMAN");
+    WOMAN(0, "女");
     
     private int value;
     
     private String name;
     
-    private String enumName;
     
-    private SexEnum(int value, String name, String enumName){
+    private SexEnum(int value, String name){
         this.value = value;
         this.name = name;
-        this.enumName = enumName;
     }
     
     @Override
@@ -38,6 +34,10 @@ public enum SexEnum implements SuperEnum {
     }
     
     public String getEnumName() {
-        return enumName;
+        return name();
+    }
+    
+    public String getClassName() {
+        return getClass().getName();
     }
 }
