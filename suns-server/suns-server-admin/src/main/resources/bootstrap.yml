@@ -11,3 +11,6 @@ eureka:
             defaultZone: http://${ryan.suns.eureka.defaultZoneIp}:${ryan.suns.eureka.port}/eureka/
 
 
+jasypt:
+    encryptor:
+        password: suns #根密码

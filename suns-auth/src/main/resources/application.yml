@@ -9,9 +9,9 @@ spring:
 
     datasource:
         driver-class-name: com.mysql.jdbc.Driver
-        username: qdm162290194
-        password: ryan941026
-        url: jdbc:mysql://qdm162290194.my3w.com:3306/qdm162290194_db?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+        url: jdbc:mysql://qdm162290194.my3w.com:3306/qdm162290194_db?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&tinyInt1isBit=false
+        username: ENC(01ez0Rw8at261C++9qdM3z0TyG/GQGSb)
+        password: ENC(J+kOB2WIhdln1nm9qPizPquichN6hL2T)
 
 server:
     port: 8201
