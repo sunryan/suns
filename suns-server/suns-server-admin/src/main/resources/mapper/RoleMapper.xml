@@ -9,7 +9,42 @@
         </foreach>
     </insert>
 
+    <insert id="saveRoleMenus">
+        insert into sys_role_menu(roleId,menuId) values
+        <foreach collection="menuIds" item="item" separator=",">
+            (#{roleId},#{item})
+        </foreach>
+    </insert>
+
+    <sql id="query_page_where">
+        <where>
+            r.delFlag = 0
+            <if test="sysRole.roleName != null">
+                and r.roleName = #{sysRole.roleName}
+            </if>
+            <if test="sysRole.roleCode != null">
+                and r.roleCode = #{sysRole.roleCode}
+            </if>
+        </where>
+    </sql>
+
     <delete id="delUserRoles">
         delete from sys_user_role where userId = #{userId}
     </delete>
+
+    <delete id="deleteRoleMenus">
+         delete from sys_role_menu where roleId = #{roleId}
+    </delete>
+
+    <select id="queryPage" resultType="com.ryan.suns.common.model.admin.SysRole">
+        SELECT r.id, r.roleName, r.roleCode FROM sys_role r
+        <include refid="query_page_where"/>
+    </select>
+
+    <select id="findUserCountByroleId" resultType="java.lang.Integer">
+        SELECT count(*) FROM sys_user_role ur
+        LEFT JOIN sys_user u ON ur.userId = u.id
+        LEFT JOIN sys_role r ON r.id = ur.roleId
+        where u.delFlag = 0 and  r.roleId = #{roleId}
+    </select>
 </mapper>
