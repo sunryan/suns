@@ -3,6 +3,41 @@
 <mapper namespace="com.ryan.suns.admin.mapper.MenuMapper">
 
 
+    <resultMap id="treeResultMap" type="com.ryan.suns.common.model.admin.SysMenu" >
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="permission" property="permission"/>
+        <result column="url" property="url"/>
+        <result column="method" property="method"/>
+        <result column="parentId" property="parentId"/>
+        <result column="icon" property="icon"/>
+        <result column="component" property="component"/>
+        <result column="sort" property="sort"/>
+        <result column="type" property="type"/>
+        <collection column="id" property="children" javaType="java.util.ArrayList"
+                    ofType="com.ryan.suns.common.model.admin.SysMenu" select="getNextNodeTree"/>
+    </resultMap>
+
+    <resultMap id="NextTreeResultMap" type="com.ryan.suns.common.model.admin.SysMenu">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="permission" property="permission"/>
+        <result column="url" property="url"/>
+        <result column="method" property="method"/>
+        <result column="parentId" property="parentId"/>
+        <result column="icon" property="icon"/>
+        <result column="component" property="component"/>
+        <result column="sort" property="sort"/>
+        <result column="type" property="type"/>
+        <collection column="id" property="children" javaType="java.util.ArrayList"
+                    ofType="com.ryan.suns.common.model.admin.SysMenu" select="getNextNodeTree"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,name,permission,url,method,parentId,icon,component,sort,type
+    </sql>
+
     <select id="findMenuByRoleCode" resultType="com.ryan.suns.common.model.admin.SysMenu">
         SELECT m.*
         FROM sys_menu m
@@ -10,4 +45,13 @@
         LEFT JOIN sys_role r ON r.id = rm.roleId
         WHERE  r.delFlag = 0  AND m.delFlag = 0  AND r.roleCode = #{roleCode}
     </select>
+
+    <select id="findMenuTree" resultMap="treeResultMap">
+        select <include refid="Base_Column_List"/> FROM sys_menu where parentId = 0 and delFlag = 0
+    </select>
+
+    <select id="getNextNodeTree" resultMap="NextTreeResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM sys_menu WHERE parentId = #{id} and delFlag = 0
+    </select>
+
 </mapper>

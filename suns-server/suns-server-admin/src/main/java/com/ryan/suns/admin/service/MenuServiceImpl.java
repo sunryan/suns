@@ -19,4 +19,9 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, SysMenu>  implement
     public List<SysMenu> findMenuByRoleCode(String roleCode) {
         return baseMapper.findMenuByRoleCode(roleCode);
     }
+    
+    @Override
+    public List<SysMenu> findMenuTree() {
+        return baseMapper.findMenuTree();
+    }
 }

@@ -29,6 +29,11 @@ public class RoleControl extends BaseControl implements RoleClient {
     @Autowired
     private RoleService roleService;
     
+    /**
+     * 查询所有角色
+     * @param wrapper
+     * @return
+     */
     @GetMapping("findAll")
     public ResponseEntity findAll(EntityWrapper<SysRole> wrapper){
         wrapper.eq("delFlag", "0");
@@ -50,7 +55,7 @@ public class RoleControl extends BaseControl implements RoleClient {
      * @return
      */
     @PostMapping()
-    public ResponseEntity insertUser(SysRole sysRole){
+    public ResponseEntity insertRole(SysRole sysRole){
         if(roleService.insert(sysRole)){
             return ok();
         }else{
@@ -59,12 +64,12 @@ public class RoleControl extends BaseControl implements RoleClient {
     }
     
     /**
-     * 修改用户
+     * 修改角色
      * @param sysRole
      * @return
      */
     @PutMapping()
-    public ResponseEntity updateUser(SysRole sysRole){
+    public ResponseEntity updateRole(SysRole sysRole){
         if(sysRole.getId() == null){
             return fail("数据不正确");
         }
@@ -77,12 +82,12 @@ public class RoleControl extends BaseControl implements RoleClient {
     
     
     /**
-     * 删除用户
+     * 删除角色
      * @param roleId
      * @return
      */
     @DeleteMapping("/{roleId}")
-    public ResponseEntity deleteUser(@PathVariable("roleId") String roleId){
+    public ResponseEntity deleteRole(@PathVariable("roleId") String roleId){
         if(roleService.findUserCountByroleId(roleId) > 0){
             return fail("该角色已绑定用户，删除失败");
         }
@@ -103,7 +108,8 @@ public class RoleControl extends BaseControl implements RoleClient {
      * @param menuIds
      * @return
      */
-    public ResponseEntity bindRoleMenus(@RequestParam(value = "roleId") String roleId, @RequestParam(value = "menuIds[]")  String[] menuIds){
+    @PostMapping("/bindMenus/{roleId}")
+    public ResponseEntity bindMenus(@PathVariable("roleId") String roleId, @RequestParam(value = "menuIds[]") String[] menuIds){
         if(roleService.bindRoleMenus(roleId, menuIds)){
             return ok();
         }else{

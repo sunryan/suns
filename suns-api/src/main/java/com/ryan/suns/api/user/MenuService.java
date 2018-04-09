@@ -12,4 +12,10 @@ import java.util.List;
 public interface MenuService extends IService<SysMenu> {
     
     List<SysMenu> findMenuByRoleCode(String roleCode);
+    
+    /**
+     * 查找菜单 tree结构
+     * @return
+     */
+    List<SysMenu> findMenuTree();
 }

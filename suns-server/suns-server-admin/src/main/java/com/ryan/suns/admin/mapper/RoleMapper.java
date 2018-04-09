@@ -50,4 +50,11 @@ public interface RoleMapper extends SuperMapper<SysRole>{
      * @return
      */
     int findUserCountByroleId(@Param("roleId") String roleId);
+    
+    /**
+     * 查询用户的所有角色id集合
+     * @param userId
+     * @return
+     */
+    List<String> selectUserRoles(@Param("userId") String userId);
 }

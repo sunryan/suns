@@ -45,6 +45,10 @@
         SELECT count(*) FROM sys_user_role ur
         LEFT JOIN sys_user u ON ur.userId = u.id
         LEFT JOIN sys_role r ON r.id = ur.roleId
-        where u.delFlag = 0 and  r.roleId = #{roleId}
+        where u.delFlag = 0 and  r.id = #{roleId}
+    </select>
+
+    <select id="selectUserRoles" resultType="java.lang.String">
+        select roleId from sys_user_role where userId = #{userId}
     </select>
 </mapper>

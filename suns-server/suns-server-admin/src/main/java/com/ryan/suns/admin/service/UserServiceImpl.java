@@ -32,6 +32,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, SysUser> implements
     
     @Override
     public Page<SysUser> queryPage(Page<SysUser> page, SysUser sysUser) {
+        
         return page.setRecords(baseMapper.queryPage(page, sysUser));
     }
 }

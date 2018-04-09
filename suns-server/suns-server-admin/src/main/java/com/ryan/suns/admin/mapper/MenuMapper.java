@@ -12,4 +12,6 @@ import java.util.List;
 public interface MenuMapper extends SuperMapper<SysMenu>{
     
     List<SysMenu> findMenuByRoleCode(@Param("roleCode") String roleCode);
+    
+    List<SysMenu> findMenuTree();
 }

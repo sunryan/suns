@@ -1,9 +1,13 @@
 package com.ryan.suns.common.model.admin;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.ryan.suns.common.model.BaseEntity;
 import com.ryan.suns.common.model.enums.DeleteEnum;
+import com.ryan.suns.common.model.enums.MenuType;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * @author lr
@@ -56,13 +60,16 @@ public class SysMenu extends BaseEntity<SysMenu>{
     private Integer sort;
     
     /**
-     * 菜单类型 （0菜单 1按钮）
+     * 菜单类型
      */
-    private String type;
+    private MenuType type;
     
     /**
      * 0--正常 1--删除
      */
     private DeleteEnum delFlag;
+    
+    @TableField(exist = false)
+    private List<SysMenu> children;
     
 }

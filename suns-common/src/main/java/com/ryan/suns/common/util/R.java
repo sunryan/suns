@@ -19,7 +19,7 @@ public class R<T>  implements Serializable {
     public static final boolean FAIL = false;
     
 
-    private String msg = "success";
+    private String msg = "操作成功";
 
     private boolean success = SUCCESS;
 
