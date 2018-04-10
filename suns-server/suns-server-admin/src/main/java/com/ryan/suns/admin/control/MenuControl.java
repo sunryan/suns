@@ -46,7 +46,7 @@ public class MenuControl extends BaseControl implements MenuClient {
      * @return
      */
     @PostMapping()
-    @CacheEvict(value = "menu_tree", keyGenerator = "keyGenerator")
+    @CacheEvict(value = "menu_tree", allEntries = true)
     public ResponseEntity insertMenu(SysMenu sysMenu){
         if(menuService.insert(sysMenu)){
             return ok();
@@ -61,7 +61,7 @@ public class MenuControl extends BaseControl implements MenuClient {
      * @return
      */
     @PutMapping()
-    @CacheEvict(value = "menu_tree", keyGenerator = "keyGenerator")
+    @CacheEvict(value = "menu_tree", allEntries = true)
     public ResponseEntity updateMenu(SysMenu sysMenu){
         if(sysMenu.getId() == null){
             return fail("数据不正确");
@@ -79,7 +79,7 @@ public class MenuControl extends BaseControl implements MenuClient {
      * @return
      */
     @DeleteMapping("/{roleId}")
-    @CacheEvict(value = "menu_tree", keyGenerator = "keyGenerator")
+    @CacheEvict(value = "menu_tree", allEntries = true)
     public ResponseEntity deleteMenu(@PathVariable("roleId") String roleId){
         SysMenu sysMenu = new SysMenu();
         sysMenu.setId(roleId);
