@@ -3,7 +3,10 @@ package com.ryan.suns.api.user;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.IService;
+import com.ryan.suns.common.model.admin.SysMenu;
 import com.ryan.suns.common.model.admin.SysRole;
+
+import java.util.List;
 
 /**
  * @author lr
@@ -35,4 +38,11 @@ public interface RoleService  extends IService<SysRole> {
      * @return
      */
     int findUserCountByroleId(String roleId);
+    
+    /**
+     * 根据roleId 查找菜单列表
+     * @param roleId
+     * @return
+     */
+    List<SysMenu> findRoleMenus(String roleId);
 }

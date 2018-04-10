@@ -1,9 +1,10 @@
 package com.ryan.suns.admin.service;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.ryan.suns.admin.mapper.MenuMapper;
 import com.ryan.suns.api.user.MenuService;
 import com.ryan.suns.common.model.admin.SysMenu;
-import com.ryan.suns.admin.mapper.MenuMapper;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, SysMenu>  implement
     }
     
     @Override
+    @Cacheable(value = "menu_tree", keyGenerator = "keyGenerator")
     public List<SysMenu> findMenuTree() {
         return baseMapper.findMenuTree();
     }

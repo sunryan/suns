@@ -101,6 +101,11 @@ public class RoleControl extends BaseControl implements RoleClient {
         }
     }
     
+    @GetMapping("/roleMenus/{roleId}")
+    public ResponseEntity findRoleMenus(@PathVariable("roleId") String roleId){
+        return ok(roleService.findRoleMenus(roleId));
+    }
+    
     
     /**
      * 角色绑定菜单

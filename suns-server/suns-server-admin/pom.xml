@@ -12,15 +12,6 @@
     <artifactId>suns-server-admin</artifactId>
 
     <dependencies>
-        <!-- 公共项目 -->
-        <dependency>
-            <groupId>com.ryan</groupId>
-            <artifactId>suns-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.ryan</groupId>
-            <artifactId>suns-common</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

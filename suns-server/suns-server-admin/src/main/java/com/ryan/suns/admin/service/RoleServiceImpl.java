@@ -5,6 +5,7 @@ import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.ryan.suns.admin.mapper.RoleMapper;
 import com.ryan.suns.api.user.RoleService;
+import com.ryan.suns.common.model.admin.SysMenu;
 import com.ryan.suns.common.model.admin.SysRole;
 import org.springframework.stereotype.Service;
 
@@ -49,5 +50,10 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, SysRole> implements
     @Override
     public int findUserCountByroleId(String roleId) {
         return baseMapper.findUserCountByroleId(roleId);
+    }
+    
+    @Override
+    public List<SysMenu> findRoleMenus(String roleId) {
+        return baseMapper.findRoleMenus(roleId);
     }
 }

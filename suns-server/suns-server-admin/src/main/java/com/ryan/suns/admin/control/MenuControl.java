@@ -6,6 +6,7 @@ import com.ryan.suns.common.BaseControl;
 import com.ryan.suns.common.model.admin.SysMenu;
 import com.ryan.suns.common.model.enums.DeleteEnum;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,6 +46,7 @@ public class MenuControl extends BaseControl implements MenuClient {
      * @return
      */
     @PostMapping()
+    @CacheEvict(value = "menu_tree", keyGenerator = "keyGenerator")
     public ResponseEntity insertMenu(SysMenu sysMenu){
         if(menuService.insert(sysMenu)){
             return ok();
@@ -59,6 +61,7 @@ public class MenuControl extends BaseControl implements MenuClient {
      * @return
      */
     @PutMapping()
+    @CacheEvict(value = "menu_tree", keyGenerator = "keyGenerator")
     public ResponseEntity updateMenu(SysMenu sysMenu){
         if(sysMenu.getId() == null){
             return fail("数据不正确");
@@ -76,6 +79,7 @@ public class MenuControl extends BaseControl implements MenuClient {
      * @return
      */
     @DeleteMapping("/{roleId}")
+    @CacheEvict(value = "menu_tree", keyGenerator = "keyGenerator")
     public ResponseEntity deleteMenu(@PathVariable("roleId") String roleId){
         SysMenu sysMenu = new SysMenu();
         sysMenu.setId(roleId);

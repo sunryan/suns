@@ -1,6 +1,7 @@
 package com.ryan.suns.admin.mapper;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.ryan.suns.common.model.admin.SysMenu;
 import com.ryan.suns.common.model.admin.SysRole;
 import org.apache.ibatis.annotations.Param;
 
@@ -57,4 +58,6 @@ public interface RoleMapper extends SuperMapper<SysRole>{
      * @return
      */
     List<String> selectUserRoles(@Param("userId") String userId);
+    
+    List<SysMenu> findRoleMenus(@Param("roleId") String roleId);
 }

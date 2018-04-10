@@ -23,4 +23,16 @@
         <module>suns-server-core</module>
     </modules>
 
+    <dependencies>
+        <!-- 公共项目 -->
+        <dependency>
+            <groupId>com.ryan</groupId>
+            <artifactId>suns-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ryan</groupId>
+            <artifactId>suns-common</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

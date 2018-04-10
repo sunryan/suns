@@ -51,4 +51,11 @@
     <select id="selectUserRoles" resultType="java.lang.String">
         select roleId from sys_user_role where userId = #{userId}
     </select>
+
+    <select id="findRoleMenus" resultType="com.ryan.suns.common.model.admin.SysMenu">
+        SELECT m.id, m.parentId,m.name FROM sys_menu m
+        LEFT JOIN sys_role_menu rm ON m.id = rm.menuId
+        LEFT JOIN sys_role r ON r.id = rm.roleId
+        where m.delFlag = 0 and  r.id = #{roleId}
+    </select>
 </mapper>
