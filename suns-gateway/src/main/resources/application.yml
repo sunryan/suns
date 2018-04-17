@@ -2,13 +2,6 @@ spring:
     application:
         name: suns-gateway
 
-    thymeleaf:
-        prefi: classpath:/templates/
-        suffix: .html
-        encoding: UTF-8
-        cache: false
-
-
 server:
     port: 8103
 

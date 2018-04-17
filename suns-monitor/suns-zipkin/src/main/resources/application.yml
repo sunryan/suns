@@ -1,0 +1,44 @@
+spring:
+    application:
+        name: suns-zipkin-stream-server
+
+    sleuth:
+        enabled: false
+
+    datasource:
+         url: jdbc:mysql://qdm162290194.my3w.com:3306/qdm162290194_db?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&tinyInt1isBit=false
+         username: ENC(01ez0Rw8at261C++9qdM3z0TyG/GQGSb)
+         password: ENC(J+kOB2WIhdln1nm9qPizPquichN6hL2T)
+         # 使用druid数据源
+         type: com.alibaba.druid.pool.DruidDataSource
+         driver-class-name: com.mysql.jdbc.Driver
+         filters: stat
+         maxActive: 20
+         initialSize: 1
+         maxWait: 60000
+         minIdle: 1
+         timeBetweenEvictionRunsMillis: 60000
+         minEvictableIdleTimeMillis: 300000
+         validationQuery: select 'x'
+         testWhileIdle: true
+         testOnBorrow: false
+         testOnReturn: false
+         poolPreparedStatements: true
+         maxOpenPreparedStatements: 20
+
+    #rabbitmq配置
+    rabbitmq:
+        host: localhost
+        port: 5672
+        username: guest
+        password: guest
+
+zipkin:
+    storage:
+        type: mysql
+
+server:
+    port: 8411 #启动端口
+
+
+

@@ -1,6 +1,6 @@
 spring:
     application:
-        name: shop-eureka
+        name: suns-eureka
 
 server:
     port: 8101 #启动端口

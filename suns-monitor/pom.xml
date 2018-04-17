@@ -13,7 +13,17 @@
     <packaging>pom</packaging>
     <modules>
         <module>suns-mq</module>
+        <module>suns-zipkin</module>
     </modules>
+
+
+    <dependencies>
+        <!-- 公共项目 -->
+        <dependency>
+            <groupId>com.ryan</groupId>
+            <artifactId>suns-common</artifactId>
+        </dependency>
+    </dependencies>
 
 
 </project>
